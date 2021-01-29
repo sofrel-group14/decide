@@ -2,40 +2,42 @@
  * This class implements the CMV (Conditions Met Vector).
  */
 public class CMV {
-  
-  // The parameters.
-  private Parameters parameters;
-  // The conditions met vector.
-  private boolean[] cmv = new boolean[15];
-  
-  /**
-   * Creates a CMV with input parameters.
-   * @param param the parameter instance.
-   */
-  public CMV(Parameters param) {
-    this.parameters = param;
-  }
 
-  /**
-   * Populates the cmv vector, i.e. goes through all LICs.
-   * 
-   * This function needs to be called before get().
-   */
-  public void populate() {
+	// The parameters.
+	private Parameters parameters;
+	// The conditions met vector.
+	private boolean[] cmv = new boolean[15];
+
+	/**
+	 * Creates a CMV with input parameters.
+	 * 
+	 * @param param the parameter instance.
+	 */
+	public CMV(Parameters param) {
+		this.parameters = param;
+	}
+
+	/**
+	 * Populates the cmv vector, i.e. goes through all LICs.
+	 * 
+	 * This function needs to be called before get().
+	 */
+	public void populate() {
 		// TODO: Implementation
-  }
-  
-  /**
-   * Returns the populated cmv vector.
-   * 
-   * Note that vector is empty before you call populate().
-   * @return the populated vector.
-   */
-  public boolean[] get() {
-    return this.cmv;
-  }
+	}
 
-	//-----------------------------------------
+	/**
+	 * Returns the populated cmv vector.
+	 * 
+	 * Note that vector is empty before you call populate().
+	 * 
+	 * @return the populated vector.
+	 */
+	public boolean[] get() {
+		return this.cmv;
+	}
+
+	// -----------------------------------------
 	// LIC condition functions below
 
 	/**
