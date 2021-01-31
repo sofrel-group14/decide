@@ -26,7 +26,7 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
-    // TODO: Implementation
+    cmv[6] = LIC6();
   }
 
   /**
