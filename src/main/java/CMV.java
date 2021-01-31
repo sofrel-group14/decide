@@ -11,7 +11,8 @@ public class CMV {
   /**
    * Creates a CMV with input parameters.
    * 
-   * @param param the parameter instance. @param points the array with data points
+   * @param param the parameter instance. 
+   * @param points the array with data points
    */
   public CMV(Parameters param, Point[] points) {
     this.parameters = param;
