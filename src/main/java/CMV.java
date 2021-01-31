@@ -101,7 +101,7 @@ public class CMV {
     for (int i = 0; i < points.length - parameters.N_PTS; i++) {
       Point[] range = Arrays.copyOfRange(points, i, i + parameters.N_PTS);
       var start = range[0];
-      var end = range[parameters.N_PTS];
+      var end = range[parameters.N_PTS - 1];
 
       if (start.equals(end)) {
         // dist = sum of distances to all other points
