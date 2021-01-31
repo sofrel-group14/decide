@@ -85,7 +85,7 @@ public class CMV {
     for(int startPnt = 0; startPnt < points.length - parameters.Q_PTS+1; startPnt++){
       
       boolean[] quad = new boolean[] {false, false, false, false};
-      int PntsInDiffQuad = 0;
+      int pntsInDiffQuad = 0;
 
       for(int consPnt = 0; consPnt < parameters.Q_PTS; consPnt++){
         
@@ -93,12 +93,12 @@ public class CMV {
         
         if(!quad[quadrant-1]){
           quad[quadrant-1] = true;
-          PntsInDiffQuad++;
+          pntsInDiffQuad++;
         }
 
       }
 
-      if(PntsInDiffQuad > parameters.QUADS) return true;
+      if(pntsInDiffQuad > parameters.QUADS) return true;
 
     }
     return false;
