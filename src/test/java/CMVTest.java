@@ -7,7 +7,7 @@ public class CMVTest{
   * It Test that it can find 3 points in three different quadrants
   * It Test that it can skips the first data points to find the next 3 consecitive data points
   **/
-  public void TestLIC4True(){
+  public void testLIC4True(){
 
     Parameters params = new Parameters();
         
@@ -28,7 +28,7 @@ public class CMVTest{
 	}
 
 
-    public void TestLIC4False(){
+    public void testLIC4False(){
 
     Parameters params = new Parameters();
         
