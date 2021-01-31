@@ -33,6 +33,8 @@ git commit -m "Short message"       # bad
 git commit                          # good
 ```
 
+Note that you can [change](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_core_editor) which editor git will open, in case you don't like the default one. To switch to *nano*, for example, use: `git config --global core.editor nano`.  
+
 That said, if a short message suffices to explain the commit, that is perfectly fine.
 
 Commit messages should be linked to corresponding issues where applicable (this is done by referencing the issue number as `#<issue number>`). Note that commits should almost always be related to some issue (see grading criteria). If there's no related issue, one should probably be created before committing.
