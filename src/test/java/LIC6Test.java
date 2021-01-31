@@ -5,6 +5,9 @@ public final class LIC6Test {
   private final Parameters params = new Parameters();
 
   @Test
+  /**
+   * @Test Case where points in the range overlap, and distance is greater
+   */
   public void LIC6IdenticalTrue() {
     params.DIST = 5;
     params.N_PTS = 5;
@@ -25,6 +28,9 @@ public final class LIC6Test {
   }
 
   @Test
+  /**
+   * @Test Case where points in the range overlap, and distance is smaller
+   */
   public void LIC6IdenticalFalse() {
     params.DIST = 7;
     params.N_PTS = 5;
@@ -45,6 +51,9 @@ public final class LIC6Test {
   }
 
   @Test
+  /**
+   * @Test Case with measurement of the point-line distance, and distance is greater
+   */
   public void LIC6LineTrue() {
     params.DIST = 1;
     params.N_PTS = 5;
@@ -65,6 +74,9 @@ public final class LIC6Test {
   }
 
   @Test
+  /**
+   * @Test Case with measurement of the point-line distance, and distance is smaller
+   */
   public void LIC6LineFalse() {
     params.DIST = 20;
     params.N_PTS = 5;
