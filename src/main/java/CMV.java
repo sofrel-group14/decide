@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This class implements the CMV (Conditions Met Vector).
  */
@@ -24,6 +26,7 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
+    cmv[7] = LIC8();
     // TODO: Implementation
   }
 
@@ -109,8 +112,28 @@ public class CMV {
    * Computes the LIC 8 condition.
    */
   private boolean LIC8() {
-    // TODO: Implementation.
-    return false;
+    int A_PTS = parameters.A_PTS;
+    int B_PTS = parameters.B_PTS;
+    double RADIUS = parameters.RADIUS1;
+
+    // Condition is not met when NUMPOINTS < 5
+    if (points.length < 5) return false;
+    // 1 <= A_PTS, 1 <= B_PTS
+    if (A_PTS > 1 || B_PTS > 1) return false;
+    // A_PTS + B_PTS <= NUMPOINTS - 3
+    if (A_PTS + B_PTS > points.length - 3) return false;
+
+    // The set
+    ArrayList<Point> set = new ArrayList<Point>();
+
+    // TODO: Get the set of three points
+
+    // The set should not be contained within or on the circle.
+    for (Point p : set) {
+      if (p.isInCircle(RADIUS)) return false;
+    }
+    
+    return true;
   }
 
   /**
