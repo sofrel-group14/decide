@@ -8,10 +8,11 @@ public class CMV {
   // The conditions met vector.
   private boolean[] cmv = new boolean[15];
   private Point[] points;
+
   /**
    * Creates a CMV with input parameters.
    * 
-   * @param param the parameter instance. 
+   * @param param  the parameter instance.
    * @param points the array with data points
    */
   public CMV(Parameters param, Point[] points) {
@@ -79,29 +80,29 @@ public class CMV {
    * Computes the LIC 4 condition.
    */
   private boolean LIC4() {
-    
-    if(parameters.Q_PTS < 2 && parameters.Q_PTS > points.length) return false;
-    if(parameters.QUADS < 1 && parameters.QUADS > 3) return false;
 
-    for(int startPnt = 0; startPnt < points.length - parameters.Q_PTS+1; startPnt++){
-      
-      boolean[] quad = new boolean[] {false, false, false, false};
+    if (parameters.Q_PTS < 2 && parameters.Q_PTS > points.length) return false;
+    if (parameters.QUADS < 1 && parameters.QUADS > 3) return false;
+
+    for (int startPnt = 0; startPnt < points.length - parameters.Q_PTS + 1; startPnt++) {
+
+      boolean[] quad = new boolean[] { false, false, false, false };
       int pntsInDiffQuad = 0;
 
-      for(int consPnt = 0; consPnt < parameters.Q_PTS; consPnt++){
-        
+      for (int consPnt = 0; consPnt < parameters.Q_PTS; consPnt++) {
+
         int quadrant = points[startPnt + consPnt].quadrant();
-        
-        if(!quad[quadrant-1]){
-          quad[quadrant-1] = true;
+
+        if (!quad[quadrant - 1]) {
+          quad[quadrant - 1] = true;
           pntsInDiffQuad++;
         }
 
       }
 
-      if(pntsInDiffQuad > parameters.QUADS) return true;
-
+      if (pntsInDiffQuad > parameters.QUADS) return true;
     }
+
     return false;
   }
 

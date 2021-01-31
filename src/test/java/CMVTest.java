@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-public class CMVTest{
+
+public class CMVTest {
   @Test
   /**
   * @Test gives True Boolean Value based on Test  
@@ -10,37 +11,26 @@ public class CMVTest{
   public void testLIC4True(){
 
     Parameters params = new Parameters();
-        
+
     params.Q_PTS = 3;
     params.QUADS = 2;
 
-    Point[] dp = new Point[]{
-        new Point(1,1),
-        new Point(1,2),
-        new Point(-1,1),
-        new Point(-1,-1)
-      };
+    Point[] dp = new Point[] { new Point(1, 1), new Point(1, 2), new Point(-1, 1), new Point(-1, -1) };
 
     CMV cmv = new CMV(params, dp);
     cmv.populate();
     assertTrue(cmv.get()[4] == true);
-  
-	}
 
+  }
 
     public void testLIC4False(){
 
     Parameters params = new Parameters();
-        
+
     params.Q_PTS = 3;
     params.QUADS = 2;
 
-    Point[] dp = new Point[]{
-        new Point(1,1),
-        new Point(1,1),
-        new Point(1,1),
-        new Point(1,1)
-    };
+    Point[] dp = new Point[] { new Point(1, 1), new Point(1, 1), new Point(1, 1), new Point(1, 1) };
 
     CMV cmv = new CMV(params, dp);
     cmv.populate();
