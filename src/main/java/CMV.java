@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * This class implements the CMV (Conditions Met Vector).
  */
@@ -26,7 +24,7 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
-    cmv[7] = LIC8();
+    cmv[8] = LIC8();
     // TODO: Implementation
   }
 
@@ -110,6 +108,7 @@ public class CMV {
 
   /**
    * Computes the LIC 8 condition.
+   * Note that the points should NOT be in the area, confused me a bit when writing the code.
    */
   private boolean LIC8() {
     int A_PTS = parameters.A_PTS;
@@ -123,17 +122,23 @@ public class CMV {
     // A_PTS + B_PTS <= NUMPOINTS - 3
     if (A_PTS + B_PTS > points.length - 3) return false;
 
-    // The set
-    ArrayList<Point> set = new ArrayList<Point>();
-
-    // TODO: Get the set of three points
-
-    // The set should not be contained within or on the circle.
-    for (Point p : set) {
-      if (p.isInCircle(RADIUS)) return false;
+    try {
+      // Try to find the set. If any point is in the area, that set is not accepted.
+      for (int i = 0; i < points.length - 3; i++) {
+        boolean p1 = points[i].isInCircle(RADIUS);
+        if (p1) continue;
+        boolean p2 = points[i + A_PTS + 1].isInCircle(RADIUS);
+        if (p2) continue;
+        boolean p3 = points[i + A_PTS + 1 + B_PTS + 1].isInCircle(RADIUS);
+        if (p3) continue;
+        else return true;
+      }
+    } catch (IndexOutOfBoundsException e) {
+      // We didn't find such a set.
+      return false;
     }
     
-    return true;
+    return false;
   }
 
   /**
