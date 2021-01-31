@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * This class implements the CMV (Conditions Met Vector).
  */
@@ -93,7 +95,43 @@ public class CMV {
    * Computes the LIC 6 condition.
    */
   private boolean LIC6() {
-    // TODO: Implementation.
+
+    if (points.length < 3) return false;
+
+    for (int i = 0; i < points.length - parameters.N_PTS; i++) {
+      Point[] range = Arrays.copyOfRange(points, i, i + parameters.N_PTS);
+      var start = range[0];
+      var end = range[parameters.N_PTS];
+
+      if (start == end) {
+        // dist = sum of distances to all other points
+
+        var dist = 0.0;
+        for (int j = 1; j < range.length - 1; j++) {
+          dist += Math.sqrt((range[j].x - start.x)*(range[j].x - start.x) + (range[j].y - start.y)*(range[j].y - start.y));
+        }
+        if (dist > parameters.DIST) {
+          return true;
+        }
+      } else {
+        // dist = distance to line between start and end
+
+        var line = new Point(end.x - start.x, end.y - start.y); // 'vector' from start to end
+
+        for (int j = 1; j < range.length - 1; j++) {
+          var p = range[j];
+
+          var vec = new Point(start.x - p.x, start.y - p.y);
+          var len = Math.sqrt(line.x * line.x + line.y * line.y);
+          var dist = Math.abs(line.x * vec.y - vec.x * line.y) / len;
+
+          if (dist > parameters.DIST) {
+            return true;
+          }
+        }
+      }
+    }
+
     return false;
   }
 
