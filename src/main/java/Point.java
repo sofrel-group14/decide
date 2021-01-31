@@ -6,4 +6,14 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    public int quadrant(){
+        //1,1 1,-1 -1,1 -1,-1
+        if(this.x > 0 && this.y > 0) return 1;
+        if(this.x < 0 && this.y > 0) return 2;
+        if(this.x < 0 && this.y < 0) return 3;
+        if(this.x > 0 && this.y < 0) return 4;
+
+        return -1;
+    }
 }
