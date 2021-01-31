@@ -9,13 +9,23 @@ public class Point {
 
   /**
    * Function that determines if this point is contained within (or on the edge)
-   * of a circle.
+   * of a circle located at (0, 0).
    * 
    * @param radius the radius of the circle (inclusive).
    * @return true if in or on the edge of the circle, false otherwise.
    */
   public boolean isInCircle(double radius) {
-    // Assumes perfect circle, which (I think??) is a correct assumption in the assignment.
-    return Math.pow(this.x, 2) + Math.pow(this.y, 2) <= Math.pow(radius, 2);
+    return isInCircle(radius, 0, 0);
+  }
+
+  /**
+   * Function that determines if this point is contained within (or on the edge)
+   * of a circle located at (cx, cy).
+   * @param cx x coordinate of the circle's center
+   * @param cy y coordinate of the circle's center
+   * @return true if in or on the edge of the circle, false otherwise.
+   */
+  public boolean isInCircle(double radius, double cx, double cy) {
+    return Math.pow(this.x - cx, 2) + Math.pow(this.y - cy, 2) <= Math.pow(radius, 2);
   }
 }
