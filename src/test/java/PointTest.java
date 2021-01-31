@@ -7,6 +7,6 @@ public class PointTest{
      **/
     public void testSimpleAssert(){
         Point p = new Point(10,12);
-        assertTrue(p.X == 10 && p.Y == 12);
+        assertTrue(p.x == 10 && p.y == 12);
     }
 }
