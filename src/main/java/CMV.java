@@ -108,7 +108,7 @@ public class CMV {
 
         var dist = 0.0;
         for (int j = 1; j < range.length - 1; j++) {
-          dist += Math.sqrt((range[j].x - start.x)*(range[j].x - start.x) + (range[j].y - start.y)*(range[j].y - start.y));
+          dist += Math.sqrt(Math.pow(range[j].x - start.x, 2) + Math.pow(range[j].y - start.y, 2));
         }
         if (dist > parameters.DIST) {
           return true;
