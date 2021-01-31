@@ -7,14 +7,15 @@ public class CMV {
   private Parameters parameters;
   // The conditions met vector.
   private boolean[] cmv = new boolean[15];
-
+  private Point[] points;
   /**
    * Creates a CMV with input parameters.
    * 
    * @param param the parameter instance.
    */
-  public CMV(Parameters param) {
+  public CMV(Parameters param, Point[] points) {
     this.parameters = param;
+    this.points = points;
   }
 
   /**
