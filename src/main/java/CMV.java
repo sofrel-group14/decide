@@ -103,7 +103,7 @@ public class CMV {
       var start = range[0];
       var end = range[parameters.N_PTS];
 
-      if (start == end) {
+      if (start.equals(end)) {
         // dist = sum of distances to all other points
 
         var dist = 0.0;

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Point {
   public double x;
   public double y;
@@ -8,12 +10,15 @@ public class Point {
   }
 
   @Override
-  public boolean equals(Object other) {
-    if (other == null) return false;
-    if (other == this) return true;
-    if (!(other instanceof Point)) return false;
-    Point otherPoint = (Point) other;
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Point point = (Point) o;
+    return Double.compare(point.x, x) == 0 && Double.compare(point.y, y) == 0;
+  }
 
-    return y == otherPoint.y && x == otherPoint.x;
+  @Override
+  public int hashCode() {
+    return Objects.hash(x, y);
   }
 }
