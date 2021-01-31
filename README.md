@@ -62,11 +62,11 @@ This covers a previously untested edge case where X < 0. Related to #12.
 ## Branches
 
 Branches should be linked to issues through their names, as:  
-`issue-<issue number>/short-description-of-branch`
+`issue-<issue number>-short-description-of-branch`
 
-**Example:** `issue-12/lic-7` if issue 12 is related to implementing LIC 7.
+**Example:** `issue-12-lic-7` if issue 12 is related to implementing LIC 7.
 
-(This naming convention adheres to [widely used community conventions](https://github.com/agis/git-style-guide#branches). *Disclaimer:* Some problems may appear when using slashes in branch names if using CI, see comments [here](https://stackoverflow.com/a/6065944).)
+(This naming convention adheres to [widely used community conventions](https://github.com/agis/git-style-guide#branches).)
 
 ## Pull requests
 
