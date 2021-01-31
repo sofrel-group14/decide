@@ -8,11 +8,11 @@ public class CMVTest {
    */
   public void lic8ShouldBeTrue1() {
     Point[] points = new Point[] {
-      new Point(11, 0), // Should be included
+      new Point(11, 0), // Should be outside the area
       new Point(20, 0), // Intervening A_PTS
-      new Point(0, 11), // Should be included
+      new Point(0, 11), // Should be outside the area
       new Point(30, -5), // Intervening, B_PTS
-      new Point(0, -11), // Should be included
+      new Point(0, -11), // Should be outside the area
       new Point(0, 2), // Padding since length needs to be >= 5
     };
 
@@ -32,9 +32,9 @@ public class CMVTest {
    */
   public void lic8ShouldBeTrue2() {
     Point[] points = new Point[] {
-      new Point(15.33, 0), // Should be included
-      new Point(0, 16.71), // Should be included
-      new Point(10, 13), // Should be included
+      new Point(15.33, 0), // Should be outside the area
+      new Point(0, 16.71), // Should be outside the area
+      new Point(10, 13), // Should be outside the area
       new Point(10, 2), // Padding since length needs to be >= 5
       new Point(42, 1337), // Padding since length needs to be >= 5
       new Point(69, 420), // Padding since length needs to be >= 5
@@ -53,9 +53,9 @@ public class CMVTest {
   @Test
   public void lic8ShouldBeFalse() {
     Point[] points = new Point[] {
-      new Point(1, 0), // Should be included
-      new Point(0, 2), // Should be included
-      new Point(3, 3), // Should be included
+      new Point(1, 0), // Should be inside the area
+      new Point(0, 2), // Should be inside the area
+      new Point(3, 3), // Should be inside the area
       new Point(10, 2), // Padding since length needs to be >= 5
       new Point(42, 1337), // Padding since length needs to be >= 5
       new Point(69, 420), // Padding since length needs to be >= 5
