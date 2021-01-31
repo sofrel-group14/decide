@@ -1,12 +1,12 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CMVTest {
+public class LIC8Test {
   @Test
   /**
    * Tests LIC8 with padding, i.e. A_PTS and B_PTS set to 1.
    */
-  public void lic8ShouldBeTrue1() {
+  public void shouldBeTrue1() {
     Point[] points = new Point[] {
       new Point(11, 0), // Should be outside the area
       new Point(20, 0), // Intervening A_PTS
@@ -30,7 +30,7 @@ public class CMVTest {
   /**
    * Test LIC8 with no padding.
    */
-  public void lic8ShouldBeTrue2() {
+  public void shouldBeTrue2() {
     Point[] points = new Point[] {
       new Point(15.33, 0), // Should be outside the area
       new Point(0, 16.71), // Should be outside the area
@@ -51,7 +51,7 @@ public class CMVTest {
   }
 
   @Test
-  public void lic8ShouldBeFalse() {
+  public void shouldBeFalse() {
     Point[] points = new Point[] {
       new Point(1, 0), // Should be inside the area
       new Point(0, 2), // Should be inside the area
@@ -72,7 +72,7 @@ public class CMVTest {
   }
 
   @Test
-  public void lic8ShouldBeFalseWhenFewerThan5Points() {
+  public void shouldBeFalseWhenFewerThan5Points() {
     Point[] points = new Point[] {
       new Point(1, 0),
       new Point(0, 2),
