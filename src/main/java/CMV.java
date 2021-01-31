@@ -11,7 +11,7 @@ public class CMV {
   /**
    * Creates a CMV with input parameters.
    * 
-   * @param param the parameter instance.
+   * @param param the parameter instance. @param points the array with data points
    */
   public CMV(Parameters param, Point[] points) {
     this.parameters = param;
@@ -25,6 +25,7 @@ public class CMV {
    */
   public void populate() {
     // TODO: Implementation
+    cmv[4] = LIC4();
   }
 
   /**
@@ -77,7 +78,29 @@ public class CMV {
    * Computes the LIC 4 condition.
    */
   private boolean LIC4() {
-    // TODO: Implementation.
+    
+    if(parameters.Q_PTS < 2 && parameters.Q_PTS > points.length) return false;
+    if(parameters.QUADS < 1 && parameters.QUADS > 3) return false;
+
+    for(int startPnt = 0; startPnt < points.length - parameters.Q_PTS+1; startPnt++){
+      
+      boolean[] quad = new boolean[] {false, false, false, false};
+      int PntsInDiffQuad = 0;
+
+      for(int consPnt = 0; consPnt < parameters.Q_PTS; consPnt++){
+        
+        int quadrant = points[startPnt + consPnt].quadrant();
+        
+        if(!quad[quadrant-1]){
+          quad[quadrant-1] = true;
+          PntsInDiffQuad++;
+        }
+
+      }
+
+      if(PntsInDiffQuad > parameters.QUADS) return true;
+
+    }
     return false;
   }
 
