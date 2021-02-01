@@ -26,8 +26,8 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
-    // TODO: Implementation
     cmv[4] = LIC4();
+    cmv[11] = LIC11();
   }
 
   /**
@@ -158,7 +158,21 @@ public class CMV {
    * Computes the LIC 11 condition.
    */
   private boolean LIC11() {
-    // TODO: Implementation.
+    int G_PTS = parameters.G_PTS;
+
+    if (points.length < 3) return false;
+    if (G_PTS < 1 || G_PTS > points.length - 2) return false;
+
+    for (int k = 0; k < points.length - 2 - G_PTS; k++) {
+      int i = k;
+      int j = k + G_PTS + 1;
+      Point a = points[i];
+      Point b = points[j];
+
+      if (a.x - b.x < 0) return true;
+      else continue;
+    }
+
     return false;
   }
 
