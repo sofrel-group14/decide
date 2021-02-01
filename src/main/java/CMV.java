@@ -58,18 +58,19 @@ public class CMV {
    * Computes the LIC 1 condition.
    */
   private boolean LIC1() {
-    // TODO: Implementation.
+    boolean exists = false;
+
     if (this.points.length<3){
       return false;
     }
 
     for (int i = 0;i<this.points.length-2;i++){
       boolean statement = insideCircle(this.points[i],this.points[i+1],this.points[i+2], parameters.RADIUS1);
-      if (!statement){
-        return false;
+      if (statement){
+        exists = true;
       }
     }
-    return true;
+    return exists;
   }
 
   /**
