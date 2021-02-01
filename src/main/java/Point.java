@@ -21,6 +21,7 @@ public class Point {
   /**
    * Function that determines if this point is contained within (or on the edge)
    * of a circle located at (cx, cy).
+   * @param radius the radius of the circle (inclusive).
    * @param cx x coordinate of the circle's center
    * @param cy y coordinate of the circle's center
    * @return true if in or on the edge of the circle, false otherwise.

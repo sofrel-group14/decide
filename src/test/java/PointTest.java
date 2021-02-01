@@ -14,7 +14,7 @@ public class PointTest{
     /**
      * Tests the Point.isInCircle()-function.
      */
-    public void circleInAreaTest1() {
+    public void circleInAreaTest() {
       Point p1 = new Point(0, 0);
       Point p2 = new Point(1, 0);
       Point p3 = new Point(0, 1);
@@ -30,8 +30,10 @@ public class PointTest{
       assertTrue(p4.isInCircle(1));
       assertTrue(p5.isInCircle(1));
       assertTrue(p6.isInCircle(4));
+      assertTrue(p6.isInCircle(1, 1, 1));
 
       assertFalse(p7.isInCircle(1));
       assertFalse(p8.isInCircle(1));
+      assertFalse(p8.isInCircle(1, 4, 4));
     }
 }
