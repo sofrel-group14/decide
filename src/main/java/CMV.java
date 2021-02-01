@@ -28,6 +28,7 @@ public class CMV {
   public void populate() {
     // TODO: Implementation
     cmv[4] = LIC4();
+    cmv[10] = LIC10();
   }
 
   /**
@@ -150,7 +151,34 @@ public class CMV {
    * Computes the LIC 10 condition.
    */
   private boolean LIC10() {
-    // TODO: Implementation.
+    int E_PTS = parameters.E_PTS;
+    int F_PTS = parameters.F_PTS;
+    double AREA = parameters.AREA1;
+
+    if (points.length < 5) return false;
+    if (E_PTS < 1 || F_PTS < 1) return false;
+    if (E_PTS + F_PTS > points.length - 3) return false;
+
+    // I don't think the try/catch block is necessary logically, but put it there just in case...
+    try {
+      for (int i = 0; i < points.length - 3 - E_PTS - F_PTS; i++) {
+        Point a = points[i];
+        Point b = points[i + E_PTS + 1];
+        Point c = points[i + E_PTS + 1 + F_PTS + 1];
+  
+        // https://www.mathopenref.com/coordtrianglearea.html
+        double area = a.x*(b.y - c.y) + b.x*(c.y - a.y) + c.x*(a.y - b.y);
+        area = area / 2;
+        area = Math.abs(area);
+        
+        if (area > AREA) return true;
+        else continue;
+      }
+    } catch (IndexOutOfBoundsException e) {
+      // No such set
+      return false;
+    }
+
     return false;
   }
 
