@@ -170,7 +170,6 @@ public class CMV {
       Point b = points[j];
 
       if (a.x - b.x < 0) return true;
-      else continue;
     }
 
     return false;
