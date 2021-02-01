@@ -29,4 +29,22 @@ public class PointTest {
     assertTrue(pQ4.quadrant() == 4);
 
   }
+
+  @Test
+  /**
+   * @Test gives back an angle based on the points
+   * It test that it gives back the correct angle
+   **/
+  public void testAngleTrue(){
+
+    Point pQ1 = new Point(1, 0);
+    Point pQ1Origo = new Point(0, 0);
+    Point pQ2 = new Point(0, 1);
+    Point pQ3 = new Point(-1, 0);
+
+    assertEquals(Point.angle(pQ1,pQ1Origo,pQ2), Math.PI/2);
+    assertEquals(Point.angle(pQ1,pQ1Origo,pQ3), Math.PI);
+    //if two points are the same then we don't have an angle
+    assertEquals(Point.angle(pQ1,pQ1Origo,pQ1Origo), 0);
+  }
 }
