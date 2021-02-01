@@ -23,7 +23,7 @@ public class CMVTest {
 
   }
 
-    public void testLIC4False(){
+  public void testLIC4False(){
 
     Parameters params = new Parameters();
 
@@ -36,5 +36,38 @@ public class CMVTest {
     cmv.populate();
     assertTrue(cmv.get()[4] == true);
 
+  }
+
+  @Test
+  /**
+  * @Test gives True Boolean Value based on LIC5 
+  * It Test that it can find 2 consecitive points has a negative difference
+  **/
+  public void testLIC5True(){
+    Parameters params = new Parameters();
+
+    Point[] dp = new Point[] { new Point(8, 7), new Point(6, 5), new Point(4, 3), new Point(2, 1) };
+
+    CMV cmv = new CMV(params, dp);
+    cmv.populate();
+    assertTrue(cmv.get()[5] == true);
+
+  }
+
+  @Test
+    /**
+  * @Test gives False Boolean Value based on LIC5 
+  * It Test that it can find 2 consecitive points has a negative difference
+  **/
+  public void testLIC5False(){
+
+    Parameters params = new Parameters();
+
+    Point[] dp = new Point[] { new Point(1, 0), new Point(2,0), new Point(3, 0), new Point(4, 0) };
+
+    CMV cmv = new CMV(params, dp);
+    cmv.populate();
+    assertTrue(cmv.get()[5] == false);
+    
   }
 }
