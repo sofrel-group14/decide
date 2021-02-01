@@ -21,12 +21,23 @@ public class PointTest {
     Point pQ2 = new Point(-1, 1);
     Point pQ3 = new Point(-1, -1);
     Point pQ4 = new Point(1, -1);
+    Point pQ2Axis = new Point(-1,0);
+    Point pQ3Axis = new Point(0,-1);
+    Point pQ1Axis1 = new Point(0,1);
+    Point pQ1Axis2 = new Point(1,0);
+
 
     assertTrue(pQ1.quadrant() == 1);
     assertTrue(pQ1Origo.quadrant() == 1);
     assertTrue(pQ2.quadrant() == 2);
     assertTrue(pQ3.quadrant() == 3);
     assertTrue(pQ4.quadrant() == 4);
+
+    assertTrue(pQ2Axis.quadrant() == 2);
+    assertTrue(pQ3Axis.quadrant() == 3);
+    assertTrue(pQ1Axis1.quadrant() == 1);
+    assertTrue(pQ1Axis2.quadrant() == 1);
+
 
   }
 }
