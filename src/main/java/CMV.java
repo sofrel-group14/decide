@@ -26,6 +26,7 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
+    cmv[0] = LIC0();
     cmv[4] = LIC4();
     cmv[11] = LIC11();
   }
@@ -48,7 +49,18 @@ public class CMV {
    * Computes the LIC 0 condition.
    */
   private boolean LIC0() {
-    // TODO: Implementation.
+    if (parameters.LENGTH1 < 0) {
+      return false;
+    }
+
+    for (int i = 0; i < points.length - 1; i++) {
+      Point p1 = points[i];
+      Point p2 = points[i+1];
+      double distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+      if (distance > parameters.LENGTH1) {
+        return true;
+      }
+    }
     return false;
   }
 
