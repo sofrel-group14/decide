@@ -277,20 +277,20 @@ public class CMV {
     }
 
 
-    for (int i = 0; i < points.length - parameters.C_PTS - parameters.D_PTS; i++) {
+    for (int i = 0; i < points.length - parameters.C_PTS - parameters.D_PTS - 2; i++) {
       var a = points[i];
       var vert = points[i + parameters.C_PTS + 1];
-      var c = points[i + parameters.C_PTS + 1 + parameters.D_PTS + 1];
+      var b = points[i + parameters.C_PTS + 1 + parameters.D_PTS + 1];
 
       // Points coincide at vertex, angle undefined, does not satisfy LIC
-      if (a.equals(vert) || c.equals(vert)) {
+      if (a.equals(vert) || b.equals(vert)) {
         continue;
       }
 
-      var angle = Point.angle(a, vert, c);
+      var angle = Point.angle(a, vert, b);
 
-      if (angle < Math.PI - parameters.EPSILON
-          || angle > Math.PI + parameters.EPSILON) {
+      if ((angle < Math.PI - parameters.EPSILON)
+          || (angle > Math.PI + parameters.EPSILON)) {
         return true;
       }
     }
