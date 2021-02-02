@@ -172,7 +172,6 @@ public class CMV {
         area = Math.abs(area);
         
         if (area > AREA) return true;
-        else continue;
       }
     } catch (IndexOutOfBoundsException e) {
       // No such set
