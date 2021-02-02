@@ -88,7 +88,7 @@ final public class LIC14Test {
   */
 	  public void testLIC14EdgeCase(){
 
-    Parameters params = new Parameters();
+  Parameters params = new Parameters();
 
     params.AREA1 = 1;
     params.AREA2 = 1;
