@@ -96,6 +96,8 @@ public class CMV {
    */
   private boolean LIC6() {
 
+    if (parameters.N_PTS < 3 || parameters.N_PTS > points.length) return false;
+    if (parameters.DIST < 0) return false;
     if (points.length < 3) return false;
 
     for (int i = 0; i < points.length - parameters.N_PTS; i++) {
