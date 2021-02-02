@@ -123,7 +123,7 @@ public class CMV {
     if (A_PTS + B_PTS > points.length - 3) return false;
 
     try {
-      for (int i = 0; i < points.length - 3; i++) {
+      for (int i = 0; i < points.length - 2 - A_PTS - B_PTS; i++) {
         Point a = points[i];
         Point b = points[i + A_PTS + 1];
         Point c = points[i + A_PTS + 1 + B_PTS + 1];

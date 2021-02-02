@@ -12,7 +12,7 @@ public class PointTest{
 
     @Test
     /**
-     * Tests the Point.isInCircle()-function.
+     * Tests Point#isInCircle() for different circle radii and circle positions.
      */
     public void circleInAreaTest() {
       Point p1 = new Point(0, 0);

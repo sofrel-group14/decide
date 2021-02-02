@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LIC8Test {
   @Test
   /**
-   * Tests LIC8 with padding, i.e. A_PTS and B_PTS set to 1.
+   * Tests LIC8 is true for 3 points that do not intersect in a circle with radius 1.
    */
   public void shouldBeTrue1() {
     Point[] points = new Point[] {
@@ -13,7 +13,6 @@ public class LIC8Test {
       new Point(0, 2), // Should be outside the area
       new Point(30, -5), // Intervening, B_PTS
       new Point(0, -2), // Should be outside the area
-      new Point(0, 2), // Padding since length needs to be >= 5
     };
 
     Parameters params = new Parameters();
@@ -28,7 +27,7 @@ public class LIC8Test {
 
   @Test
   /**
-   * Test LIC8 with no padding.
+   * Test LIC8 is true when A_PTS is greater than 1 and points do not intersect in a circle with radius 1.
    */
   public void shouldBeTrue2() {
     Point[] points = new Point[] {
@@ -51,6 +50,9 @@ public class LIC8Test {
   }
 
   @Test
+  /**
+   * Test LIC8 is false when 3 points intersect eachother in a circle with radius 1.
+   */
   public void shouldBeFalseWhenInsideArea() {
     Point[] points = new Point[] {
       new Point(2, 2), // First point
@@ -58,7 +60,6 @@ public class LIC8Test {
       new Point(2.5, 2), // Should be inside the area
       new Point(10, 2), // Intervening point
       new Point(3, 2), // Should be inside the area
-      new Point(10, 2), // Padding since length needs to be >= 5
     };
 
     Parameters params = new Parameters();
@@ -72,6 +73,9 @@ public class LIC8Test {
   }
 
   @Test
+  /**
+   * Tests if LIC8 is false when A_PTS or B_PTS is less than 1.
+   */
   public void shouldBeFalseWhenAptsOrBPtsZero() {
     Point[] points = new Point[] {
       new Point(10, 0), // Should be outside the area
@@ -93,6 +97,9 @@ public class LIC8Test {
   }
 
   @Test
+  /**
+   * Tests that LIC8 is false when there are fewer than 5 points.
+   */
   public void shouldBeFalseWhenFewerThan5Points() {
     Point[] points = new Point[] {
       new Point(1, 0),
