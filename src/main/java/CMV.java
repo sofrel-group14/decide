@@ -161,7 +161,7 @@ public class CMV {
 
     // I don't think the try/catch block is necessary logically, but put it there just in case...
     try {
-      for (int i = 0; i < points.length - 3 - E_PTS - F_PTS; i++) {
+      for (int i = 0; i < points.length - 2 - E_PTS - F_PTS; i++) {
         Point a = points[i];
         Point b = points[i + E_PTS + 1];
         Point c = points[i + E_PTS + 1 + F_PTS + 1];
