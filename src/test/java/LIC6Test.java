@@ -9,7 +9,7 @@ public final class LIC6Test {
    * @Test Case where points in the range overlap, and distance is greater
    */
   public void LIC6IdenticalTrue() {
-    params.DIST = 5;
+    params.DIST = 1;
     params.N_PTS = 5;
 
     Point[] points = new Point[]{
