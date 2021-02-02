@@ -27,6 +27,7 @@ public class CMV {
    */
   public void populate() {
     cmv[4] = LIC4();
+    cmv[5] = LIC5();
     cmv[8] = LIC8();
     cmv[11] = LIC11();
   }
@@ -111,7 +112,11 @@ public class CMV {
    * Computes the LIC 5 condition.
    */
   private boolean LIC5() {
-    // TODO: Implementation.
+    for(int pnt = 1; pnt < points.length - 1; pnt++){
+      if(points[pnt].x - points[pnt - 1].x < 0){
+        return true;
+      }
+    }
     return false;
   }
 
