@@ -27,6 +27,7 @@ public class CMV {
    */
   public void populate() {
     cmv[4] = LIC4();
+    cmv[7] = LIC7();
     cmv[11] = LIC11();
   }
 
@@ -126,7 +127,19 @@ public class CMV {
    * Computes the LIC 7 condition.
    */
   private boolean LIC7() {
-    // TODO: Implementation.
+    int K_PTS = parameters.K_PTS;
+    if (K_PTS < 1 || K_PTS > (points.length - 2) || points.length < 3) {
+      return false;
+    }
+
+    for (int i = 0; i < points.length - 1 - K_PTS; i++) {
+      Point p1 = points[i];
+      Point p2 = points[i + K_PTS + 1];
+      double distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+      if (distance > parameters.LENGTH1) {
+        return true;
+      }
+    }
     return false;
   }
 
