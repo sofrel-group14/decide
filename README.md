@@ -38,7 +38,7 @@ git commit -m "Short message"       # bad
 git commit                          # good
 ```
 
-Note that you can [change](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_core_editor) which editor git will open, in case you don't like the default one. To switch to *nano*, for example, use: `git config --global core.editor nano`.  
+Note that you can [change](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_core_editor) which editor git will open, in case you don't like the default one. To switch to *nano*, for example, use: `git config --global core.editor nano`.
 
 That said, if a short message suffices to explain the commit, that is perfectly fine.
 
@@ -77,7 +77,16 @@ Branches should be linked to issues through their names, as:
 
 ## Pull requests
 
-*TODO: Add something reasonable here. For example, I think we decided that we need at least two people to do code review before merging. Also we should probably start branching from 'development' and then merging into that, as discussed in our last meeting.*
+* Make sure to mention the issue that a pull request targets. This will close the issue automatically, when the branch is merged ([source](https://docs.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword)).
+* At least two people have to code review before merging.
+* Merge into the `development` branch.
+
+Example:
+```
+This PR implements LIC 0.
+
+Fixes: #6
+```
 
 # Testing
 
