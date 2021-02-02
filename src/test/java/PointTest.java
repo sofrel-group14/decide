@@ -80,6 +80,44 @@ public class PointTest{
     c = new Point(0, 0);
     assertEquals(0, Point.triangleAreaFromPoints(a, b, c));
   }
+
+  @Test
+  /**
+   * Test the equals() override for Point
+   */
+  void testEquals() {
+    Point a = new Point(1, 1);
+    Point b = new Point(1, 1);
+    Point c = new Point(1, -1);
+
+    assertEquals(a, b);
+    assertEquals(b, a);
+
+    assertNotEquals(a, c);
+    assertNotEquals(b, c);
+
+    a.x = 2;
+    assertNotEquals(a, b);
+  }
+
+  @Test
+  /**
+   * Test associated hashCode method for equality comparison
+   */
+  void testHashCode() {
+    Point a = new Point(1, 1);
+    Point b = new Point(1, 1);
+    Point c = new Point(1, -1);
+
+    assertEquals(a.hashCode(), b.hashCode());
+    assertEquals(b.hashCode(), a.hashCode());
+
+    assertNotEquals(a.hashCode(), c.hashCode());
+    assertNotEquals(b.hashCode(), c.hashCode());
+
+    a.x = 2;
+    assertNotEquals(a.hashCode(), b.hashCode());
+  }
   
   @Test
   /**
