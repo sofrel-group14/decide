@@ -141,12 +141,11 @@ public class CMV {
       if (start.equals(end)) {
         // dist = sum of distances to all other points
 
-        var dist = 0.0;
         for (int j = 1; j < range.length - 1; j++) {
-          dist += Math.sqrt(Math.pow(range[j].x - start.x, 2) + Math.pow(range[j].y - start.y, 2));
-        }
-        if (dist > parameters.DIST) {
-          return true;
+          var dist = Math.sqrt(Math.pow(range[j].x - start.x, 2) + Math.pow(range[j].y - start.y, 2));
+          if (dist > parameters.DIST) {
+            return true;
+          }
         }
       } else {
         // dist = distance to line between start and end
