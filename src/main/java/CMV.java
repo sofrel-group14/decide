@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.awt.geom.Point2D;
+
 /**
  * This class implements the CMV (Conditions Met Vector).
  */
@@ -34,6 +36,7 @@ public class CMV {
     cmv[10] = LIC10();
     cmv[7] = LIC7();
     cmv[5] = LIC5();
+    cmv[6] = LIC6();
     cmv[8] = LIC8();
     cmv[11] = LIC11();
     cmv[14] = LIC14();
@@ -153,7 +156,44 @@ public class CMV {
    * Computes the LIC 6 condition.
    */
   private boolean LIC6() {
-    // TODO: Implementation.
+
+    if (parameters.N_PTS < 3 || parameters.N_PTS > points.length) return false;
+    if (parameters.DIST < 0) return false;
+    if (points.length < 3) return false;
+
+    for (int i = 0; i < points.length - parameters.N_PTS; i++) {
+      Point[] range = Arrays.copyOfRange(points, i, i + parameters.N_PTS);
+      var start = range[0];
+      var end = range[parameters.N_PTS - 1];
+
+      if (start.equals(end)) {
+        // dist = sum of distances to all other points
+
+        for (int j = 1; j < range.length - 1; j++) {
+          var dist = Math.sqrt(Math.pow(range[j].x - start.x, 2) + Math.pow(range[j].y - start.y, 2));
+          if (dist > parameters.DIST) {
+            return true;
+          }
+        }
+      } else {
+        // dist = distance to line between start and end
+
+        var line = new Point(end.x - start.x, end.y - start.y); // 'vector' from start to end
+
+        for (int j = 1; j < range.length - 1; j++) {
+          var p = range[j];
+
+          var vec = new Point(start.x - p.x, start.y - p.y);
+          var len = Math.sqrt(line.x * line.x + line.y * line.y);
+          var dist = Math.abs(line.x * vec.y - vec.x * line.y) / len;
+
+          if (dist > parameters.DIST) {
+            return true;
+          }
+        }
+      }
+    }
+
     return false;
   }
 

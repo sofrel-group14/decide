@@ -9,6 +9,19 @@ public class Point {
     this.y = y;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Point point = (Point) o;
+    return Double.compare(point.x, x) == 0 && Double.compare(point.y, y) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(x, y);
+  }
+
   public int quadrant() {
     // 1,1 1,-1 -1,1 -1,-1
     if (this.x >= 0 && this.y >= 0) return 1;
@@ -70,18 +83,5 @@ public class Point {
   public static double triangleAreaFromPoints(Point a, Point b, Point c) {
     // https://www.mathopenref.com/coordtrianglearea.html
     return Math.abs((a.x*(b.y - c.y) + b.x*(c.y - a.y) + c.x*(a.y - b.y)) / 2);
-  }
-  
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Point point = (Point) o;
-    return Double.compare(point.x, x) == 0 && Double.compare(point.y, y) == 0;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(x, y);
   }
 }
