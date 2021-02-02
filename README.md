@@ -49,6 +49,7 @@ Commit messages should follow a prefix-convention, with the following prefixes:
 * fix - for bug fixes
 * doc - for documentation
 * refactor - for refactoring
+* format - for changing formatting such as newlines, indentation, etc.
 * test - for editing or adding new tests (to already existing features, see paragraph below)
 * misc - for anything not covered by prefixes above
 
