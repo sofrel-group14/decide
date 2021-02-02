@@ -6,7 +6,12 @@ It is as simple as it sounds. DECIDE is a program that decides, based on input d
 
 ## Tools used
 
-Uses Java with Maven as build system and JUnit for testing. *TODO:* Maybe add more information on versions (etc.) here.
+Uses Java (JDK 15) with Maven as build system and JUnit for testing.
+
+### Necessary downloads
+
+1. [Download JDK 15](https://www.oracle.com/se/java/technologies/javase-downloads.html)
+2. [Download Maven](https://maven.apache.org/download.cgi) ([installation instructions](https://maven.apache.org/install.html))
 
 # How to contribute
 
