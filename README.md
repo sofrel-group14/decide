@@ -91,7 +91,10 @@ Fixes: #6
 
 # Testing
 
-*TODO:* Add more information here. One important piece to remeber is that tests should be accompanied by a "description in natural language". Also, it's probably worth mentioning here as well that functionality and corresponding tests should be added in the same commit.
+* All tests **must** be accompanied by a description in natural language (grading criteria). 
+* Functionality and corresponding (unit) tests should be added in the same commit.
+* Take extra care to consider edge cases when constructing tests.
+* Prefer several smaller tests over few but large tests.
 
 # Statement of contribution
 *TODO:* Fill in one/two paragraphs "stating the respective contributions of each group member". This is also where to add a note if we do something "extraordinary" worthy of P+.
