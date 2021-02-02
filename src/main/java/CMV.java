@@ -30,6 +30,7 @@ public class CMV {
    */
   public void populate() {
     // TODO: Implementation
+    cmv[3] = LIC3();
     cmv[1] = LIC1();
     cmv[0] = LIC0();
     cmv[4] = LIC4();
@@ -106,7 +107,17 @@ public class CMV {
    * Computes the LIC 3 condition.
    */
   private boolean LIC3() {
-    // TODO: Implementation.
+
+    if (this.points.length<3){
+      return false;
+    }
+
+    for (int i = 0;i<this.points.length-2;i++){
+      double area = Point.triangleAreaFromPoints(this.points[i],this.points[i+1],this.points[i+2]);
+      if (area > this.parameters.AREA1){
+        return true;
+      }
+    }
     return false;
   }
 
