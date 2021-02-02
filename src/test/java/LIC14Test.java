@@ -12,7 +12,7 @@ final public class LIC14Test {
 
   public void testLIC14Inputs(){
     Parameters params = new Parameters();
-    params.AREA2 = 0;
+    params.AREA2 = -1;
 
     //Test AREA2 input
     Point[] dp = new Point[] { new Point(1, 1), new Point(1, 1), new Point(1, 1), new Point(1, 1), new Point(1, 1) };
@@ -86,16 +86,16 @@ final public class LIC14Test {
   * It tests a Edge case
 	* Tests if LIC14 can calculate AREAS correctly close to the end the Array.
   */
-	  public void testLIC14EdgeCase(){
+	public void testLIC14EdgeCase(){
 
   Parameters params = new Parameters();
 
     params.AREA1 = 1;
-    params.AREA2 = 1;
+    params.AREA2 = 2;
     params.E_PTS = 1;
     params.F_PTS = 1;
 
-    Point[] dp = new Point[] { new Point(0, 0), new Point(0, 0), new Point(1, 0), new Point(0, 1), new Point(-2, 0), new Point(2,0)};
+    Point[] dp = new Point[] { new Point(0, 0), new Point(0, 0), new Point(1, 0), new Point(0, 1), new Point(-2, 0), new Point(3,0)};
 
     CMV cmv = new CMV(params, dp);
     cmv.populate();
