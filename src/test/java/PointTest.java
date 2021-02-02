@@ -117,6 +117,7 @@ public class PointTest{
 
     a.x = 2;
     assertNotEquals(a.hashCode(), b.hashCode());
+  }
   
   @Test
   /**
