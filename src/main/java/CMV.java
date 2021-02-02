@@ -323,8 +323,34 @@ public class CMV {
    * Computes the LIC 12 condition.
    */
   private boolean LIC12() {
-    // TODO: Implementation.
-    return false;
+
+    // NUMPOINTS >= 3
+    if (points.length < 3) {
+      return false;
+    }
+
+    // 0 <= LENGTH2
+    if (parameters.LENGTH2 < 0) {
+      return false;
+    }
+
+    boolean greaterThanLENGTH1 = false;
+    boolean lessThanLENGTH2 = false;
+    for (int i = 0; i < points.length - parameters.K_PTS - 1; i++) {
+      var a = points[i];
+      var b = points[i + parameters.K_PTS + 1];
+
+      var dist = Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+      if (dist > parameters.LENGTH1) {
+        greaterThanLENGTH1 = true;
+      }
+
+      if (dist < parameters.LENGTH2) {
+        lessThanLENGTH2 = true;
+      }
+    }
+
+    return greaterThanLENGTH1 && lessThanLENGTH2;
   }
 
   /**
