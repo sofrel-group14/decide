@@ -10,7 +10,7 @@ public class CMV {
   private Parameters parameters;
   // The conditions met vector.
   private boolean[] cmv = new boolean[15];
-  LCM[][] lcm = new LCM[15][15];
+  private LCM[][] lcm = new LCM[15][15];
   private Point[] points;
 
   /**
