@@ -23,7 +23,7 @@ public class CMVTest {
 
   }
 
-    public void testLIC4False(){
+  public void testLIC4False(){
 
     Parameters params = new Parameters();
 
@@ -37,4 +37,6 @@ public class CMVTest {
     assertTrue(cmv.get()[4] == true);
 
   }
+
+
 }
