@@ -76,10 +76,14 @@ public class CMV {
       Point b = this.points[i+1];
       Point c = this.points[i+2];
 
+
       Double angle = Point.angle(a,b,c);
+      if (angle == -1){
+        return false;
+      }
       if (angle == 0){
         //angle returns 0 if two points are the same
-        return false;
+        exists = true;
       }
       if (angle< Math.PI - this.parameters.EPSILON){
         exists = true;

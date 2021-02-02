@@ -22,6 +22,10 @@ public class Point {
     // I create two vectors from the vertex
     // https://stackoverflow.com/questions/21483999/using-atan2-to-find-angle-between-two-vectors
 
+    if (a.equals(c) ||b.equals(a) ||b.equals(c)){
+      return -1;
+    }
+
     Point v1 = new Point(a.x-b.x, a.y-b.y);
     Point v2 = new Point(c.x-b.x, c.y-b.y);
 
