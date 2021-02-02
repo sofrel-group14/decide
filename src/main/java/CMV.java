@@ -39,6 +39,7 @@ public class CMV {
     cmv[6] = LIC6();
     cmv[8] = LIC8();
     cmv[11] = LIC11();
+    cmv[13] = LIC13();
     cmv[14] = LIC14();
   }
 
@@ -331,8 +332,23 @@ public class CMV {
    * Computes the LIC 13 condition.
    */
   private boolean LIC13() {
-    // TODO: Implementation.
-    return false;
+    if(parameters.RADIUS2 < 0 || points.length < 5) return false;
+
+    boolean containedInCircleRad1 = false;
+    boolean containedInCircleRad2 = false;
+
+    int aPts = parameters.A_PTS;
+    int bPts = parameters.B_PTS;
+    double raduis1 = parameters.RADIUS1;
+    double raduis2 = parameters.RADIUS2;
+
+
+    for(int Pnt = 0; Pnt < points.length - aPts - bPts - 2; Pnt++){
+      if(insideCircle(points[Pnt], points[Pnt + aPts + 1], points[Pnt + aPts + bPts + 2], raduis1)) containedInCircleRad1 = true;
+      if(insideCircle(points[Pnt], points[Pnt + aPts + 1], points[Pnt + aPts + bPts + 2], raduis2)) containedInCircleRad2 = true;
+    }
+    
+    return containedInCircleRad1 && containedInCircleRad2;
   }
 
   /**
@@ -353,8 +369,7 @@ public class CMV {
       if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts + 1], points[Pnt + ePts + fPts + 2]) > AREA1) greaterThanA1 = true;
       if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts], points[Pnt + ePts + fPts + 2]) < AREA2) lessThanA2 = true;
     }
-    System.out.println(greaterThanA1);
-    System.out.println(lessThanA2);
+
     return greaterThanA1 && lessThanA2;
   }
 
