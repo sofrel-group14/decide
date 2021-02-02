@@ -10,7 +10,8 @@ public class CMV {
   private Parameters parameters;
   // The conditions met vector.
   private boolean[] cmv = new boolean[15];
-  private LCM[][] lcm = new LCM[15][15];
+  private boolean[] puv = new boolean[15];
+  private LCM[][] lcm;
   private Point[] points;
 
   /**
@@ -71,6 +72,28 @@ public class CMV {
   }
 
   /**
+   * Sets the puv vector according to the input.
+   *
+   * This function needs to be called before getLCM().
+   *
+   * @return true if it worked, false otherwise.
+   */
+
+  public boolean setPUV(boolean[] puv) {
+
+    //length of the array
+    int lengthOne = lcm.length;
+    if (lengthOne != 15){
+      return false;
+    }
+    else {
+      //I clone since I don't want the same reference
+      this.puv = puv.clone();
+      return true;
+    }
+  }
+
+  /**
    * Returns the populated cmv vector.
    * 
    * Note that vector is empty before you call populate().
@@ -91,6 +114,18 @@ public class CMV {
   public LCM[][] getLCM(){
     return this.lcm;
   }
+
+  /**
+   * Returns the populated puv vector.
+   *
+   * Note that vector is empty before you call setPUV().
+   *
+   * @return the populated vector.
+   */
+  public boolean[] getPUV(){
+    return this.puv;
+  }
+
 
   // -----------------------------------------
   // LIC condition functions below
