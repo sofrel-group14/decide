@@ -74,11 +74,10 @@ public class CMV {
   /**
    * Sets the puv vector according to the input.
    *
-   * This function needs to be called before getLCM().
+   * This function needs to be called before getPUV().
    *
    * @return true if it worked, false otherwise.
    */
-
   public boolean setPUV(boolean[] puv) {
 
     //length of the array
