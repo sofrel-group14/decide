@@ -46,5 +46,6 @@ public class PointTest {
     assertEquals(Point.angle(pQ1,pQ1Origo,pQ3), Math.PI);
     //if two points are the same then we don't have an angle
     assertEquals(Point.angle(pQ1,pQ1Origo,pQ1Origo), 0);
+    assertEquals(Point.angle(pQ1,pQ1Origo,pQ1), 0);
   }
 }
