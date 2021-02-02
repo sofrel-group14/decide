@@ -27,16 +27,16 @@ public class PointTest {
     Point pQ1Axis2 = new Point(1,0);
 
 
-    assertTrue(pQ1.quadrant() == 1);
-    assertTrue(pQ1Origo.quadrant() == 1);
-    assertTrue(pQ2.quadrant() == 2);
-    assertTrue(pQ3.quadrant() == 3);
-    assertTrue(pQ4.quadrant() == 4);
+    assertEquals(pQ1.quadrant(), 1);
+    assertEquals(pQ1Origo.quadrant(), 1);
+    assertEquals(pQ2.quadrant(), 2);
+    assertEquals(pQ3.quadrant(), 3);
+    assertEquals(pQ4.quadrant(),  4);
 
-    assertTrue(pQ2Axis.quadrant() == 2);
-    assertTrue(pQ3Axis.quadrant() == 3);
-    assertTrue(pQ1Axis1.quadrant() == 1);
-    assertTrue(pQ1Axis2.quadrant() == 1);
+    assertEquals(pQ2Axis.quadrant(), 2);
+    assertEquals(pQ3Axis.quadrant(), 3);
+    assertEquals(pQ1Axis1.quadrant(), 1);
+    assertEquals(pQ1Axis2.quadrant(), 1);
 
 
   }
