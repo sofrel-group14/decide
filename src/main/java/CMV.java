@@ -30,6 +30,7 @@ public class CMV {
     cmv[5] = LIC5();
     cmv[8] = LIC8();
     cmv[11] = LIC11();
+    cmv[14] = LIC14();
   }
 
   /**
@@ -232,7 +233,22 @@ public class CMV {
    * Computes the LIC 14 condition.
    */
   private boolean LIC14() {
-    // TODO: Implementation.
-    return false;
+    if(points.length < 5 || parameters.AREA2 < 0) return false;
+
+    boolean greaterThanA1 = false;
+    boolean lessThanA2 = false;
+
+    int ePts = parameters.E_PTS;
+    int fPts = parameters.F_PTS;
+    double AREA1 = parameters.AREA1;
+    double AREA2 = parameters.AREA2;
+
+    for(int Pnt = 0; Pnt < points.length - ePts - fPts - 2; Pnt++){
+      if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts + 1], points[Pnt + ePts + fPts + 2]) > AREA1) greaterThanA1 = true;
+      if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts], points[Pnt + ePts + fPts + 2]) < AREA2) lessThanA2 = true;
+    }
+    System.out.println(greaterThanA1);
+    System.out.println(lessThanA2);
+    return greaterThanA1 && lessThanA2;
   }
 }
