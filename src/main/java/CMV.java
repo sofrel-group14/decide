@@ -201,7 +201,7 @@ public class CMV {
     if (points.length < 3) return false;
     if (G_PTS < 1 || G_PTS > points.length - 2) return false;
 
-    for (int k = 0; k < points.length - 2 - G_PTS; k++) {
+    for (int k = 0; k < points.length - 1 - G_PTS; k++) {
       int i = k;
       int j = k + G_PTS + 1;
       Point a = points[i];
