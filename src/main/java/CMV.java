@@ -147,29 +147,24 @@ public class CMV {
     // A_PTS + B_PTS <= NUMPOINTS - 3
     if (A_PTS + B_PTS > points.length - 3) return false;
 
-    try {
-      for (int i = 0; i < points.length - 2 - A_PTS - B_PTS; i++) {
-        Point a = points[i];
-        Point b = points[i + A_PTS + 1];
-        Point c = points[i + A_PTS + 1 + B_PTS + 1];
+    for (int i = 0; i < points.length - 2 - A_PTS - B_PTS; i++) {
+      Point a = points[i];
+      Point b = points[i + A_PTS + 1];
+      Point c = points[i + A_PTS + 1 + B_PTS + 1];
 
-        // From the set {ab, ac, ba, bc, ca, cb}, there are three unique pairs: ab, ac, bc
-        // Check circle centered at a
-        boolean ab = b.isInCircle(RADIUS, a.x, a.y);
-        boolean ac = c.isInCircle(RADIUS, a.x, a.y);
+      // From the set {ab, ac, ba, bc, ca, cb}, there are three unique pairs: ab, ac, bc
+      // Check circle centered at a
+      boolean ab = b.isInCircle(RADIUS, a.x, a.y);
+      boolean ac = c.isInCircle(RADIUS, a.x, a.y);
 
-        // Check circle centered at b
-        // Since we've already checked ab, we don't need to check ba (commutation).
-        // This also applies to cb: this line checks bc, which is why we don't need to check cb.
-        boolean bc = c.isInCircle(RADIUS, b.x, b.y);
+      // Check circle centered at b
+      // Since we've already checked ab, we don't need to check ba (commutation).
+      // This also applies to cb: this line checks bc, which is why we don't need to check cb.
+      boolean bc = c.isInCircle(RADIUS, b.x, b.y);
 
-        // If any is true, the set is invalid
-        if (ab || ac || bc) continue;
-        else return true;
-      }
-    } catch (IndexOutOfBoundsException e) {
-      // We try to access outside array, there is no such set.
-      return false;
+      // If any is true, the set is invalid
+      if (ab || ac || bc) continue;
+      else return true;
     }
 
     return false;
