@@ -40,6 +40,7 @@ public class CMV {
     cmv[8] = LIC8();
     cmv[11] = LIC11();
     cmv[14] = LIC14();
+    cmv[12] = LIC12();
   }
 
   /**
