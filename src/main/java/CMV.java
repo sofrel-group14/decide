@@ -342,12 +342,11 @@ public class CMV {
     double raduis1 = parameters.RADIUS1;
     double raduis2 = parameters.RADIUS2;
 
-
     for(int Pnt = 0; Pnt < points.length - aPts - bPts - 2; Pnt++){
       if(insideCircle(points[Pnt], points[Pnt + aPts + 1], points[Pnt + aPts + bPts + 2], raduis1)) containedInCircleRad1 = true;
       if(insideCircle(points[Pnt], points[Pnt + aPts + 1], points[Pnt + aPts + bPts + 2], raduis2)) containedInCircleRad2 = true;
     }
-    
+
     return containedInCircleRad1 && containedInCircleRad2;
   }
 
@@ -369,6 +368,8 @@ public class CMV {
       if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts + 1], points[Pnt + ePts + fPts + 2]) > AREA1) greaterThanA1 = true;
       if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts], points[Pnt + ePts + fPts + 2]) < AREA2) lessThanA2 = true;
     }
+
+    
 
     return greaterThanA1 && lessThanA2;
   }
@@ -408,10 +409,10 @@ public class CMV {
     if (a == b && lengthAC<diameter){
       return true;
     }
-    if (a==c && lengthAB < diameter){
+    if (a == c && lengthAB < diameter){
       return true;
     }
-    if (c==b && lengthAC <diameter){
+    if (c == b && lengthAC <diameter){
       return true;
     }
 
