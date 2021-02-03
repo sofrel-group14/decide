@@ -73,10 +73,10 @@ final public class LIC13Test {
   
   @Test
   /*
-  * It tests a Edge case
-  * Tests if LIC14 can calculate AREAS correctly close to the end the Array.
+  * It tests a Edge case for LIC13
+  * Check if it works with the smallest possible radius
   */
-  public void testLIC14EdgeCase(){
+  public void testLIC13EdgeCase(){
 
     Parameters params = new Parameters();
     params.RADIUS1 = 0.5;
