@@ -161,6 +161,50 @@ public class AppTest {
     // => LIC0 should be TRUE
     assertTrue(d.cmv[1]);
 
+
+            /*
+    * LIC4:
+    There exists at least one set of Q_PTS consecutive data points that lie in more than QUADS
+    quadrants. Where there is ambiguity as to which quadrant contains a given point, priority
+    of decision will be by quadrant number, i.e., I, II, III, IV. For example, the data point (0,0)
+    is in quadrant I, the point (-l,0) is in quadrant II, the point (0,-l) is in quadrant III, the point
+    (0,1) is in quadrant I and the point (1,0) is in quadrant I.
+    (2 ≤ Q PTS ≤ NUMPOINTS), (1 ≤ QUADS ≤ 3)
+    */
+    /*
+    Q_PTS = 7
+    QUADS = 1
+    If we look at the first 7 Points we can see that:
+    Point(-6, 0), Q2
+    Point(-8,-9), Q3
+    Point(-5,3), Q2 
+    Point(6,-1), Q4
+    Point(8,10), Q1
+    Point(-3,3), Q3
+    Point(8,5), Q1
+    
+    Since they are in 4 different quadrants
+    /=> LIC4 should be TRUE
+    */
+    assertTrue(d.cmv[4]);
+
+    /*
+    * LIC5:
+    There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such
+    that X[j] - X[i] < 0. (where i = j-1)
+    Point 1 Point(-8,-9), Q3
+    Point 2 Point(-5,3), Q2 
+    -8-(-5) = -3
+    /=> LIC4 should be TRUE
+    */
+
+    assertTrue(d.cmv[5]);
+    // ... more LICs
+
+
+
+    
+
     // ... more LICs
   }
 }
