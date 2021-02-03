@@ -437,7 +437,7 @@ public class CMV {
     double raduis2 = parameters.RADIUS2;
 
     for(int Pnt = 0; Pnt < points.length - aPts - bPts - 2; Pnt++){
-      if(Point.smallestCircle(points[Pnt], points[Pnt + aPts + 1], points[Pnt + aPts + bPts + 2]) <= raduis1) containedInCircleRad1 = true;
+      if(Point.smallestCircle(points[Pnt], points[Pnt + aPts + 1], points[Pnt + aPts + bPts + 2]) > raduis1) containedInCircleRad1 = true;
       if(Point.smallestCircle(points[Pnt], points[Pnt + aPts + 1], points[Pnt + aPts + bPts + 2]) <= raduis2) containedInCircleRad2 = true;
     }
 
