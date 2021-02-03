@@ -29,19 +29,21 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
+    cmv[0] = LIC0();
+    cmv[1] = LIC1();
     cmv[2] = LIC2();
     cmv[3] = LIC3();
-    cmv[1] = LIC1();
-    cmv[0] = LIC0();
     cmv[4] = LIC4();
-    cmv[10] = LIC10();
-    cmv[7] = LIC7();
     cmv[5] = LIC5();
     cmv[6] = LIC6();
+    cmv[7] = LIC7();
     cmv[8] = LIC8();
-    cmv[11] = LIC11();
-    cmv[14] = LIC14();
     cmv[9] = LIC9();
+    cmv[10] = LIC10();
+    cmv[11] = LIC11();
+    cmv[12] = LIC12();
+    
+    cmv[14] = LIC14();
   }
 
   /**
@@ -390,8 +392,34 @@ public class CMV {
    * Computes the LIC 12 condition.
    */
   private boolean LIC12() {
-    // TODO: Implementation.
-    return false;
+
+    // NUMPOINTS >= 3
+    if (points.length < 3) {
+      return false;
+    }
+
+    // 0 <= LENGTH2
+    if (parameters.LENGTH2 < 0) {
+      return false;
+    }
+
+    boolean greaterThanLENGTH1 = false;
+    boolean lessThanLENGTH2 = false;
+    for (int i = 0; i < points.length - parameters.K_PTS - 1; i++) {
+      var a = points[i];
+      var b = points[i + parameters.K_PTS + 1];
+
+      var dist = Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+      if (dist > parameters.LENGTH1) {
+        greaterThanLENGTH1 = true;
+      }
+
+      if (dist < parameters.LENGTH2) {
+        lessThanLENGTH2 = true;
+      }
+    }
+
+    return greaterThanLENGTH1 && lessThanLENGTH2;
   }
 
   /**
