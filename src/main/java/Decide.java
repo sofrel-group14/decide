@@ -2,7 +2,7 @@ public class Decide {
 
   Parameters parameters;
   boolean[] puv = new boolean[15];
-  CMV cmv;
+  boolean[] cmv;
   boolean[][] pum = new boolean[15][15];
   boolean[] fuv = new boolean[15];
   LCM[][] lcm;
@@ -16,11 +16,43 @@ public class Decide {
     this.parameters = parameters;
     this.lcm = lcm;
     this.puv = puv;
-    this.cmv = new CMV(parameters, points);
-    this.cmv.populate();
-    //this.pum = setPUM();
-    //this.fuv = setFUV();
+    CMV cmv = new CMV(parameters, points);
+    cmv.populate();
+    this.cmv = cmv.get();
+    setPUM();
+    setFUV();
+  }
 
+  private void setFUV() {
+    for (int i = 0; i < puv.length; i++) {
+      if (!puv[i]) {
+        fuv[i] = true;
+        continue;
+      }
+
+      boolean allTrue = true;
+      for (int j = 0; j < pum[i].length; j++) {
+        allTrue &= pum[i][j];
+      }
+
+      if (allTrue) {
+        fuv[i] = true;
+      }
+    }
+  }
+
+  private void setPUM() {
+    for (int i = 0; i < cmv.length; i++) {
+      for (int j = 0; j < cmv.length; j++) {
+        LCM op = lcm[i][j];
+        switch (op) {
+
+          case ANDD -> pum[i][j] = cmv[i] && cmv[j];
+          case ORR -> pum[i][j] = cmv[i] || cmv[j];
+          case NOTUSED -> pum[i][j] = true;
+        }
+      }
+    }
   }
 
   /**
@@ -28,10 +60,13 @@ public class Decide {
    *
    * @return a boolean, true if launch is a go, false otherwise
    */
-  public boolean Decide() {
-    //TODO
-    //check all conditions inside here
-    return false;
+  public boolean Launch() {
+    for (boolean condition : fuv) {
+      if (!condition) {
+        return false;
+      }
+    }
+    return true;
   }
 
 }
