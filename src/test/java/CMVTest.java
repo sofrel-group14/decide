@@ -55,7 +55,10 @@ public class CMVTest {
     assertFalse(cmv1.get()[2]);
     //two points with same value gives false
     assertFalse(cmv2.get()[2]);
+    }
 
+  @Test
+  /**
    * It Test that it if three data points belong to the same circle, I test 5 different ways according to the method
    **/
   public void testLIC1True() {
