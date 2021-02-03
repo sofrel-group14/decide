@@ -31,7 +31,7 @@ final public class LIC13Test {
 
   @Test
   /*
-  * It tests that LIC14 is True when the correct conditions are met
+  * It tests that LIC13 is True when the correct conditions are met
   */
   public void testLIC13True(){
 
@@ -50,7 +50,7 @@ final public class LIC13Test {
 
   @Test
   /*
-  * It tests that LIC14 is False when conditions are not met
+  * It tests that LIC13 is False when conditions are not met
   */
 
   public void testLIC13False(){
@@ -80,14 +80,14 @@ final public class LIC13Test {
 
     Parameters params = new Parameters();
     params.RADIUS1 = 0.5;
-    params.RADIUS2 = 0.35;
+    params.RADIUS2 = 0.36;
     params.A_PTS = 1;
     params.B_PTS = 1;
     Point[] dp = new Point[] { new Point(1, 0), new Point(0, 0.5), new Point(-1, 0), new Point(0, 0), new Point(0, 0), new Point(0.5, 0) };
 
     CMV cmv = new CMV(params, dp);
     cmv.populate();
-    assertFalse(cmv.get()[13]);
+    assertTrue(cmv.get()[13]);
 
 
   }
