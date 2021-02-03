@@ -84,4 +84,16 @@ public class Point {
     // https://www.mathopenref.com/coordtrianglearea.html
     return Math.abs((a.x*(b.y - c.y) + b.x*(c.y - a.y) + c.x*(a.y - b.y)) / 2);
   }
+
+  public double distance(Point b){
+    return Math.sqrt(Math.pow(this.x - b.x, 2) + Math.pow(this.y - b.y, 2));
+  }
+
+  public static double smallestCircle(Point a, Point b, Point c){
+    double lengthAB = a.distance(b);
+    double lengthAC = a.distance(c);
+    double lengthBC = b.distance(c);
+    
+    return Math.max(lengthAB,Math.max(lengthAC, lengthBC))/2;
+  }
 }
