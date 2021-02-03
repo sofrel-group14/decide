@@ -99,3 +99,8 @@ Fixes: #6
 # Statement of contribution
 Axel and Andreas pair-programmed the code skeleton for CMV. Yannis set up CI with Github actions. Andreas created a draft for the README over the weekend. We split up the LICs to be three per person (two for Andreas, four for Taqui), and we all reviewed each others PR:s.
 This is also where to add a note if we do something "extraordinary" worthy of P+.
+
+## What we're proud of
+We like our CI that runs tests for us. At least twice this has made us aware of curly brackets disappearing when resolving merge conflics.
+Also, we estimate that >90% of our branch names, commit messages etc. are consistent with the conventions in the README.
+
