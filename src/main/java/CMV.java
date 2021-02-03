@@ -67,31 +67,25 @@ public class CMV {
   private boolean LIC2() {
     boolean exists = false;
 
-    if (this.points.length<3){
+    if (this.points.length < 3) {
       return false;
     }
 
-    for (int i = 0;i<this.points.length-2;i++){
+    for (int i = 0; i < this.points.length - 2; i++) {
       Point a = this.points[i];
       Point b = this.points[i+1];
       Point c = this.points[i+2];
 
-
       Double angle = Point.angle(a,b,c);
-      if (angle == -1){
+      if (angle == -1) {
         return false;
       }
-      if (angle == 0){
-        //angle returns 0 if two points are the same
+      if (angle < Math.PI - this.parameters.EPSILON) {
         exists = true;
       }
-      if (angle< Math.PI - this.parameters.EPSILON){
+      if (angle > Math.PI + this.parameters.EPSILON) {
         exists = true;
       }
-      if (angle> Math.PI+this.parameters.EPSILON){
-        exists = true;
-      }
-
     }
     return exists;
   }
