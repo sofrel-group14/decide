@@ -40,7 +40,7 @@ final public class LIC13Test {
     params.RADIUS2 = 1;
     params.A_PTS = 1;
     params.B_PTS = 1;
-    Point[] dp = new Point[] { new Point(1, 0), new Point(1, 0), new Point(-1, 0), new Point(0, 0), new Point(0, 1), new Point(0, 1) };
+    Point[] dp = new Point[] { new Point(1, 0), new Point(2, 0), new Point(-1, 0), new Point(0, 0), new Point(0, 1), new Point(0, 1) };
 
     CMV cmv = new CMV(params, dp);
     cmv.populate();
@@ -79,7 +79,7 @@ final public class LIC13Test {
   public void testLIC13EdgeCase(){
 
     Parameters params = new Parameters();
-    params.RADIUS1 = 0.5;
+    params.RADIUS1 = 0.99;
     params.RADIUS2 = 0.36;
     params.A_PTS = 1;
     params.B_PTS = 1;
