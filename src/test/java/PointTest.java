@@ -145,4 +145,24 @@ public class PointTest{
     assertFalse(p8.isInCircle(1));
     assertFalse(p8.isInCircle(1, 4, 4));
   }
+
+
+  @Test
+  /**
+   * Tests Points to find what is the raduis of the smallest possible circle
+   */
+  public void smallestCircle() {
+    Point p1 = new Point(0, 0);
+    Point p2 = new Point(1, 0);
+    Point p3 = new Point(-1, 0);
+    Point p4 = new Point(0, 1);
+    Point p5 = new Point(0, 0);
+    Point p6 = new Point(0, 0);
+
+
+    assertEquals(Point.smallestCircle(p1, p2, p3), 1);
+    assertNotEquals(Point.smallestCircle(p1, p3, p4), 1);
+    assertEquals(Point.smallestCircle(p1, p5, p6), 0);
+
+  }
 }
