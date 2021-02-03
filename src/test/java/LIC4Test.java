@@ -31,7 +31,6 @@ public class LIC4Test {
    * It Test that it can skips the first data points to find the next 3 consecitive data points
    **/
   public void testLIC4False(){
-
     Parameters params = new Parameters();
 
     params.Q_PTS = 3;
@@ -41,7 +40,7 @@ public class LIC4Test {
 
     CMV cmv = new CMV(params, dp);
     cmv.populate();
-    assertTrue(cmv.get()[4] == true);
+    assertFalse(cmv.get()[4]);
 
   }
 
