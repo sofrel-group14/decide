@@ -6,6 +6,9 @@ public final class LIC9Test {
   Parameters parameters = new Parameters();
 
   @Test
+  /**
+  * @Test case where endpoints overlap with vertex
+  */
   public void LIC9AngleUndefined() {
     var points = new Point[] {
       new Point(0,0),
@@ -27,6 +30,9 @@ public final class LIC9Test {
   }
 
   @Test
+  /**
+  * @Test case where angle of points does not satsify the LIC condition 
+  */
   public void LIC9NoAngleSat() {
     var points = new Point[] {
       new Point(1,0),
@@ -47,6 +53,9 @@ public final class LIC9Test {
   }
 
   @Test
+  /**
+  * @Test case where angle satisfies the LIC condition
+  */
   public void LIC9AngleSat() {
     var points = new Point[] {
       new Point(1,0),
