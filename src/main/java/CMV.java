@@ -29,7 +29,7 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
-    // TODO: Implementation
+    cmv[2] = LIC2();
     cmv[3] = LIC3();
     cmv[1] = LIC1();
     cmv[0] = LIC0();
@@ -99,8 +99,29 @@ public class CMV {
    * Computes the LIC 2 condition.
    */
   private boolean LIC2() {
-    // TODO: Implementation.
-    return false;
+    boolean exists = false;
+
+    if (this.points.length < 3) {
+      return false;
+    }
+
+    for (int i = 0; i < this.points.length - 2; i++) {
+      Point a = this.points[i];
+      Point b = this.points[i+1];
+      Point c = this.points[i+2];
+
+      Double angle = Point.angle(a,b,c);
+      if (angle == -1) {
+        return false;
+      }
+      if (angle < Math.PI - this.parameters.EPSILON) {
+        exists = true;
+      }
+      if (angle > Math.PI + this.parameters.EPSILON) {
+        exists = true;
+      }
+    }
+    return exists;
   }
 
   /**
