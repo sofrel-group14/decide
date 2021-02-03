@@ -6,6 +6,9 @@ public final class LIC12Test {
   Parameters parameters = new Parameters();
 
   @Test
+  /**
+  * @Test case where points match the LIC condition
+  */
   public void LIC12InRange() {
     var points = new Point[] {
       new Point(0,0),
@@ -25,6 +28,9 @@ public final class LIC12Test {
   }
 
   @Test
+  /**
+  * @Test case where points do not match the LIC condition
+  */
   public void LIC12OutOfRange() {
     var points = new Point[] {
       new Point(0,0),
