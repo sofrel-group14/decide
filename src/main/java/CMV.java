@@ -31,17 +31,20 @@ public class CMV {
    * This function needs to be called before get().
    */
   public void populate() {
-    // TODO: Implementation
-    cmv[3] = LIC3();
-    cmv[1] = LIC1();
     cmv[0] = LIC0();
+    cmv[1] = LIC1();
+    cmv[2] = LIC2();
+    cmv[3] = LIC3();
     cmv[4] = LIC4();
-    cmv[10] = LIC10();
-    cmv[7] = LIC7();
     cmv[5] = LIC5();
     cmv[6] = LIC6();
+    cmv[7] = LIC7();
     cmv[8] = LIC8();
+    cmv[9] = LIC9();
+    cmv[10] = LIC10();
     cmv[11] = LIC11();
+    cmv[12] = LIC12();
+    
     cmv[14] = LIC14();
   }
 
@@ -137,8 +140,29 @@ public class CMV {
    * Computes the LIC 2 condition.
    */
   private boolean LIC2() {
-    // TODO: Implementation.
-    return false;
+    boolean exists = false;
+
+    if (this.points.length < 3) {
+      return false;
+    }
+
+    for (int i = 0; i < this.points.length - 2; i++) {
+      Point a = this.points[i];
+      Point b = this.points[i+1];
+      Point c = this.points[i+2];
+
+      Double angle = Point.angle(a,b,c);
+      if (angle == -1) {
+        return false;
+      }
+      if (angle < Math.PI - this.parameters.EPSILON) {
+        exists = true;
+      }
+      if (angle > Math.PI + this.parameters.EPSILON) {
+        exists = true;
+      }
+    }
+    return exists;
   }
 
   /**
@@ -216,7 +240,6 @@ public class CMV {
       var end = range[parameters.N_PTS - 1];
 
       if (start.equals(end)) {
-        // dist = sum of distances to all other points
 
         for (int j = 1; j < range.length - 1; j++) {
           var dist = Math.sqrt(Math.pow(range[j].x - start.x, 2) + Math.pow(range[j].y - start.y, 2));
@@ -309,7 +332,42 @@ public class CMV {
    * Computes the LIC 9 condition.
    */
   private boolean LIC9() {
-    // TODO: Implementation.
+
+    // NUMPOINTS >= 5
+    if (points.length < 5) {
+      return false;
+    }
+
+    // C_PTS >= 1, D_PTS >= 1
+    if (parameters.C_PTS < 1 || parameters.D_PTS < 1) {
+      return false;
+    }
+
+    // C_PTS + D_PTS <= NUMPOINTS - 3
+    if (parameters.C_PTS + parameters.D_PTS > points.length - 3) {
+      return false;
+    }
+
+
+    for (int i = 0; i < points.length - parameters.C_PTS - parameters.D_PTS - 2; i++) {
+      var a = points[i];
+      var vert = points[i + parameters.C_PTS + 1];
+      var b = points[i + parameters.C_PTS + 1 + parameters.D_PTS + 1];
+
+      // Points coincide at vertex, angle undefined, does not satisfy LIC
+      if (a.equals(vert) || b.equals(vert)) {
+        continue;
+      }
+
+      var angle = Point.angle(a, vert, b);
+
+      if ((angle < Math.PI - parameters.EPSILON)
+          || (angle > Math.PI + parameters.EPSILON)) {
+        return true;
+      }
+    }
+
+
     return false;
   }
 
@@ -372,8 +430,34 @@ public class CMV {
    * Computes the LIC 12 condition.
    */
   private boolean LIC12() {
-    // TODO: Implementation.
-    return false;
+
+    // NUMPOINTS >= 3
+    if (points.length < 3) {
+      return false;
+    }
+
+    // 0 <= LENGTH2
+    if (parameters.LENGTH2 < 0) {
+      return false;
+    }
+
+    boolean greaterThanLENGTH1 = false;
+    boolean lessThanLENGTH2 = false;
+    for (int i = 0; i < points.length - parameters.K_PTS - 1; i++) {
+      var a = points[i];
+      var b = points[i + parameters.K_PTS + 1];
+
+      var dist = Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+      if (dist > parameters.LENGTH1) {
+        greaterThanLENGTH1 = true;
+      }
+
+      if (dist < parameters.LENGTH2) {
+        lessThanLENGTH2 = true;
+      }
+    }
+
+    return greaterThanLENGTH1 && lessThanLENGTH2;
   }
 
   /**

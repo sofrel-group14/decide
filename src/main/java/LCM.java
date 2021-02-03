@@ -1,5 +1,5 @@
 public enum LCM {
-    ANDD,
-    ORR,
-    NOTUSED;
+  ANDD,
+  ORR,
+  NOTUSED;
 }
