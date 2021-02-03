@@ -41,6 +41,7 @@ public class CMV {
     cmv[8] = LIC8();
     cmv[11] = LIC11();
     cmv[14] = LIC14();
+    cmv[9] = LIC9();
   }
 
   /**
@@ -199,7 +200,6 @@ public class CMV {
       var end = range[parameters.N_PTS - 1];
 
       if (start.equals(end)) {
-        // dist = sum of distances to all other points
 
         for (int j = 1; j < range.length - 1; j++) {
           var dist = Math.sqrt(Math.pow(range[j].x - start.x, 2) + Math.pow(range[j].y - start.y, 2));
@@ -292,7 +292,42 @@ public class CMV {
    * Computes the LIC 9 condition.
    */
   private boolean LIC9() {
-    // TODO: Implementation.
+
+    // NUMPOINTS >= 5
+    if (points.length < 5) {
+      return false;
+    }
+
+    // C_PTS >= 1, D_PTS >= 1
+    if (parameters.C_PTS < 1 || parameters.D_PTS < 1) {
+      return false;
+    }
+
+    // C_PTS + D_PTS <= NUMPOINTS - 3
+    if (parameters.C_PTS + parameters.D_PTS > points.length - 3) {
+      return false;
+    }
+
+
+    for (int i = 0; i < points.length - parameters.C_PTS - parameters.D_PTS - 2; i++) {
+      var a = points[i];
+      var vert = points[i + parameters.C_PTS + 1];
+      var b = points[i + parameters.C_PTS + 1 + parameters.D_PTS + 1];
+
+      // Points coincide at vertex, angle undefined, does not satisfy LIC
+      if (a.equals(vert) || b.equals(vert)) {
+        continue;
+      }
+
+      var angle = Point.angle(a, vert, b);
+
+      if ((angle < Math.PI - parameters.EPSILON)
+          || (angle > Math.PI + parameters.EPSILON)) {
+        return true;
+      }
+    }
+
+
     return false;
   }
 
