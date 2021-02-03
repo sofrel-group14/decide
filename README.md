@@ -97,4 +97,5 @@ Fixes: #6
 * Prefer several smaller tests over few but large tests.
 
 # Statement of contribution
-*TODO:* Fill in one/two paragraphs "stating the respective contributions of each group member". This is also where to add a note if we do something "extraordinary" worthy of P+.
+Axel and Andreas pair-programmed the code skeleton for CMV. Yannis set up CI with Github actions. Andreas created a draft for the README over the weekend. We split up the LICs to be three per person (two for Andreas, four for Taqui), and we all reviewed each others PR:s.
+This is also where to add a note if we do something "extraordinary" worthy of P+.
