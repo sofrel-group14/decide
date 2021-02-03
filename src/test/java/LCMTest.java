@@ -10,7 +10,11 @@ final public class LCMTest {
     * @Test assures we get the same LCM as we set it as
     **/
     public void testLCMEqual() {
-        params.LENGTH1 = 10;
+
+        //TODO
+        //will be redone
+
+/*        params.LENGTH1 = 10;
 
         Point[] dp = new Point[]{new Point(8, 7), new Point(6, 5), new Point(4, 3), new Point(2, 1)};
 
@@ -38,7 +42,7 @@ final public class LCMTest {
 
         lcm[0][6] = LCM.NOTUSED;
         lcm[2][10] = LCM.ORR;
-        assertNotEquals(cmv.getLCM(), lcm);
+        assertNotEquals(cmv.getLCM(), lcm);*/
 
     }
 }

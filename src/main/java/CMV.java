@@ -10,7 +10,6 @@ public class CMV {
   private Parameters parameters;
   // The conditions met vector.
   private boolean[] cmv = new boolean[15];
-  private LCM[][] lcm = new LCM[15][15];
   private Point[] points;
 
   /**
@@ -22,7 +21,6 @@ public class CMV {
   public CMV(Parameters param, Point[] points) {
     this.parameters = param;
     this.points = points;
-    this.lcm = new LCM[15][15];
   }
 
   /**
@@ -48,30 +46,6 @@ public class CMV {
     cmv[14] = LIC14();
   }
 
-  /**
-   * Sets the lcm vector according to the input.
-   *
-   * This function needs to be called before getLCM().
-   *
-   * @return true if it worked, false otherwise.
-   */
-
-  public boolean setLCM(LCM[][] lcm) {
-
-    //length of the rows in the array
-    int lengthOne = lcm.length;
-    //length of the columns in the array
-    int lengthTwo = lcm[0].length;
-
-    if (lengthOne != 15 || lengthTwo != 15){
-      return false;
-    }
-    else {
-      //I clone since I don't want the same reference
-      this.lcm = lcm.clone();
-      return true;
-    }
-  }
 
   /**
    * Returns the populated cmv vector.
@@ -82,17 +56,6 @@ public class CMV {
    */
   public boolean[] get() {
     return this.cmv;
-  }
-
-  /**
-   * Returns the populated lcm vector.
-   *
-   * Note that vector is empty before you call setLCM().
-   *
-   * @return the populated vector.
-   */
-  public LCM[][] getLCM(){
-    return this.lcm;
   }
 
   // -----------------------------------------
