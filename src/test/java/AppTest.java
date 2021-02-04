@@ -129,11 +129,11 @@ public class AppTest {
       new Point(8,-2),
       new Point(-3,6),
       new Point(4,8),
-      new Point(-2,-9),
-      new Point(2,2),
-      new Point(8,8),
-      new Point(-4,7),
-      new Point(-5,8),
+      new Point(-2,-9), //
+      new Point(2,2), //
+      new Point(8,8), //
+      new Point(-4,7), //
+      new Point(-5,8), //
     };
     //</editor-fold>
 
@@ -191,7 +191,80 @@ public class AppTest {
     // => LIC3 should be TRUE
     assertTrue(d.cmv[3]);
 
-    // ... more LICs
+    /*
+     * LIC4:
+     * There exists at least one set of Q_PTS consecutive data points that lie in more than QUADS
+     * quadrants. Where there is ambiguity as to which quadrant contains a given point, priority
+     * of decision will be by quadrant number, i.e., I, II, III, IV. For example, the data point (0,0)
+     * is in quadrant I, the point (-1,0) is in quadrant II, the point (0,-1) is in quadrant III, the point
+     * (0,1) is in quadrant I and the point (1,0) is in quadrant I.
+     * (2 ≤ Q PTS ≤ NUMPOINTS), (1 ≤ QUADS ≤ 3)
+     */
+    /*
+    Q_PTS = 7
+    QUADS = 1
+    If we look at the first 7 Points we can see that:
+    Point(-6, 0), Q2
+    Point(-8,-9), Q3
+    Point(-5,3), Q2
+    Point(6,-1), Q4
+    Point(8,10), Q1
+    Point(-3,3), Q3
+    Point(8,5), Q1
+
+    Since they are in 4 different quadrants
+    /=> LIC4 should be TRUE
+    */
+    assertTrue(d.cmv[4]);
+
+    /*
+     * LIC5:
+     * There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such
+     * that X[j] - X[i] < 0. (where i = j-1)
+     */
+    // Point 1 Point (-6,-0)
+    // Point 2 Point (-8,-9)
+    // -8-(-6) = -2
+    // => LIC5 should be TRUE
+    assertTrue(d.cmv[5]);
+
+    /*
+     * LIC6:
+     * There exists at least one set of N_PTS consecutive data points such that at least one of the
+     * points lies a distance greater than DIST from the line joining the first and last of these N_PTS
+     * points. If the first and last points of these N_PTS are identical, then the calculated distance
+     * to compare with DIST will be the distance from the coincident point to all other points of
+     * the N_PTS consecutive points.
+     */
+    /*
+     * N_PTS = 16
+     * DIST ≈ 1.8176
+     * First 16 points satisfy: first point is (-6, 0) and last is (-2, -9).
+     * Distance from (-8, -9) to this line is ≈ 5.483 > DIST
+     * /=> LIC6 should be true
+     */
+    assertTrue(d.cmv[6]);
+
+    /*
+     * LIC9:
+     * There exists at least one set of three data points separated by exactly C_PTS and D_PTS
+     * consecutive intervening points, respectively, that form an angle such that:
+     *
+     * angle < (PI−EPSILON)
+     * or
+     * angle > (PI+EPSILON)
+     *
+     * The second point of the set of three points is always the vertex of the angle. If either the first
+     * point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+     * is not satisfied by those three points.
+     */
+    /*
+     * PI-EPSILON ≈ 1.7506
+     * PI+EPSILON ≈ 4.5325
+     * Satisfied by (-5, 3), (8, 10) and (-6, -3) (indices 2, 4, and 7). Angle is ≈ 0.2544 < PI-EPSILON
+     * /=> LIC9 should be true
+     */
+    assertTrue(d.cmv[9]);
 
     /*
      * LIC10:
@@ -230,6 +303,25 @@ public class AppTest {
     // We have: -6 < -5
     // => LIC11 should be TRUE
     assertTrue(d.cmv[11]);
+
+    /*
+     * LIC12:
+     * There exists at least one set of two data points, separated by exactly K_PTS points, s.t.
+     * their distance apart is greater than LENGTH1
+     * AND
+     * There exists at least one set of two data points, separated by exactly K_PTS points, s.t.
+     * their distance apart is less than LENGTH2.
+     */
+    /*
+     * LENGTH1 ≈ 7.72
+     * LENGTH2 ≈ 8.07
+     * K_PTS = 4
+     *
+     * First set : (-8, -9) and (8, 5) (indices 1 and 6). Distance is ≈ 21.26 > LENGTH1
+     * Second set: (-6, 0) and (-3, 3) (indices 0 and 5). Distance is ≈  4.24 < LENGTH2
+     * /=> LIC12 should be TRUE
+     */
+    assertTrue(d.cmv[12]);
 
     // ... more LICs
   }
