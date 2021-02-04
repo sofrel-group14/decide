@@ -140,26 +140,96 @@ public class AppTest {
     Decide d = new Decide(params, lcm, puv, points);
 
     /*
-    * LIC0:
-    * There exists at least one set of two consecutive data points
-    * that are a distance greater than the length, LENGTH1, apart.
-    */
+     * LIC0:
+     * There exists at least one set of two consecutive data points
+     * that are a distance greater than the length, LENGTH1, apart.
+     */
     // LENGTH1 ≈ 7.72
     // Distance between first two points, (-6,0), (-8,-9), is ≈ 9.22
     // => LIC0 should be TRUE
     assertTrue(d.cmv[0]);
 
     /*
-    * LIC1:
-    * There exists at least one set of three consecutive data points that
-    * cannot all be contained within or on a circle of radius RADIUS1.
-    */
+     * LIC1:
+     * There exists at least one set of three consecutive data points that
+     * cannot all be contained within or on a circle of radius RADIUS1.
+     */
     // RADIUS1 ≈ 1.42
-    // Distance between first two points, (-6,0), (-8,-9), is ≈ 9.22,
+    // Distance between first two points, (-6,0), (-8,-9), is ≈ 9.22, (according to https://www.calculatorsoup.com/calculators/geometry-plane/distance-two-points.php)
     // so no matter where third point is, they cannot all be contained within
     // (or on) a circle of radius ≈ 1.42.
-    // => LIC0 should be TRUE
+    // => LIC1 should be TRUE
     assertTrue(d.cmv[1]);
+
+    /*
+     * LIC2:
+     * There exists at least one set of three consecutive data points which
+     * form an angle such that:
+     * angle < (PI−EPSILON)
+     * or
+     * angle > (PI+EPSILON)
+     * The second of the three consecutive points is always the vertex of
+     * the angle. If either the first point or the last point (or both)
+     * coincides with the vertex, the angle is undefined and the LIC is
+     * not satisfied by those three points.
+     */
+    // EPSILON ≈ 1.39
+    // So, PI-EPSILON ≈ 1.75
+    // And PI+EPSILON ≈ 4.53
+    // Points (-6, 0), (-8,-9), and (-5,3) yield angle ≈ 1.51° (≈ 0.02 rad) according to https://www.geogebra.org/calculator
+    // i.e. angle < PI-EPSILON
+    // => LIC2 should be TRUE
+    assertTrue(d.cmv[2]);
+
+    /*
+     * LIC3:
+     * There exists at least one set of three consecutive data points that
+     * are the vertices of a triangle with area greater than AREA1.
+     */
+    // AREA1 ≈ 8.12
+    // Points: (-8,-9), (-5,3), and (6,-1) yield area = 72 according to https://www.geogebra.org/calculator
+    // => LIC3 should be TRUE
+    assertTrue(d.cmv[3]);
+
+    // ... more LICs
+
+    /*
+     * LIC10:
+     * There exists at least one set of three data points separated by exactly E_PTS and F_PTS
+     * consecutive intervening points, respectively, that are the vertices of a triangle with
+     * area greater than AREA1. The condition is not met when NUMPOINTS < 5.
+     */
+    // E_PTS = 8
+    // F_PTS = 7
+    // AREA1 ≈ 8.12
+    //
+    // Points:
+    // (-6,0), <-- first point
+    // ... 8 intervening points ...
+    // (9,-8), <-- second point
+    // ... 7 intervening points ...
+    // (8,8) <-- third point
+    //
+    // yield area = 116 according to https://www.geogebra.org/calculator
+    // => LIC10 should be TRUE
+    assertTrue(d.cmv[10]);
+
+    /*
+     * LIC11:
+     * There exists at least one set of two data points, (X[i], Y[i]) and (X[j], Y[j]),
+     * separated by exactly G_PTS consecutive intervening points, such that X[j] - X[i] < 0.
+     * (where i < j) The condition is not met when NUMPOINTS < 3.
+     */
+    // G_PTS = 4
+    //
+    // Points:
+    // (-5,3), <-- first point
+    // ... 4 intervening points ...
+    // (-6,-3), <-- second point
+    //
+    // We have: -6 < -5
+    // => LIC11 should be TRUE
+    assertTrue(d.cmv[11]);
 
     // ... more LICs
   }
