@@ -90,7 +90,7 @@ public class CMV {
     }
 
     for (int i = 0;i<this.points.length-2;i++){
-      boolean statement = insideCircle(this.points[i],this.points[i+1],this.points[i+2], parameters.RADIUS1);
+      boolean statement = !insideCircle(this.points[i],this.points[i+1],this.points[i+2], parameters.RADIUS1);
       if (statement){
         exists = true;
       }
@@ -460,7 +460,7 @@ public class CMV {
 
     for(int Pnt = 0; Pnt < points.length - ePts - fPts - 2; Pnt++){
       if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts + 1], points[Pnt + ePts + fPts + 2]) > AREA1) greaterThanA1 = true;
-      if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts], points[Pnt + ePts + fPts + 2]) < AREA2) lessThanA2 = true;
+      if(Point.triangleAreaFromPoints(points[Pnt], points[Pnt + ePts + 1], points[Pnt + ePts + fPts + 2]) < AREA2) lessThanA2 = true;
     }
 
     
