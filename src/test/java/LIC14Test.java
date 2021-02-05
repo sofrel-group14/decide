@@ -38,10 +38,10 @@ final public class LIC14Test {
 
     Parameters params = new Parameters();
     params.AREA1 = 1;
-    params.AREA2 = 1;
+    params.AREA2 = 2;
     params.E_PTS = 1;
     params.F_PTS = 1;
-    Point[] dp = new Point[] { new Point(0, 0), new Point(1, 0), new Point(0, 1), new Point(5, 0), new Point(-5, 0) };
+    Point[] dp = new Point[] { new Point(0, 0), new Point(1, 0), new Point(0, 1), new Point(5, 0), new Point(-5, 0), new Point(3, 0.5) };
 
     CMV cmv = new CMV(params, dp);
     cmv.populate();

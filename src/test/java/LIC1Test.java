@@ -31,11 +31,11 @@ final public class LIC1Test {
         cmv3.populate();
         cmv4.populate();
 
-        assertTrue(cmv.get()[1]);
-        assertTrue(cmv1.get()[1]);
-        assertTrue(cmv2.get()[1]);
-        assertTrue(cmv3.get()[1]);
-        assertTrue(cmv4.get()[1]);
+        assertFalse(cmv.get()[1]);
+        assertFalse(cmv1.get()[1]);
+        assertFalse(cmv2.get()[1]);
+        assertFalse(cmv3.get()[1]);
+        assertFalse(cmv4.get()[1]);
     }
 
     @Test
@@ -65,9 +65,9 @@ final public class LIC1Test {
         cmv3.populate();
         cmv3.populate();
 
-        assertFalse(cmv.get()[1]);
-        assertFalse(cmv1.get()[1]);
-        assertFalse(cmv2.get()[1]);
-        assertFalse(cmv3.get()[1]);
+        assertTrue(cmv.get()[1]);
+        assertTrue(cmv1.get()[1]);
+        assertTrue(cmv2.get()[1]);
+        assertTrue(cmv3.get()[1]);
     }
 }
