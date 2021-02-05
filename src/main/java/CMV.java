@@ -90,7 +90,7 @@ public class CMV {
     }
 
     for (int i = 0;i<this.points.length-2;i++){
-      boolean statement = insideCircle(this.points[i],this.points[i+1],this.points[i+2], parameters.RADIUS1);
+      boolean statement = !insideCircle(this.points[i],this.points[i+1],this.points[i+2], parameters.RADIUS1);
       if (statement){
         exists = true;
       }
