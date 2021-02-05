@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Test class to test the entire functionality of the
  * application (i.e. the DECIDE program).
- * Consists of three main integration tests.
+ * Consists of one main integration test, testing the
+ * application behaviour from start to finish.
  */
 public class AppTest {
 
@@ -85,7 +86,7 @@ public class AppTest {
     params.F_PTS = 7;
     params.G_PTS = 4;
     params.LENGTH2 = 8.073005754021686;
-    params.RADIUS2 = 10.34243932342224;
+    params.RADIUS2 = 1.8299267470369274;
     params.AREA2 = 5.6006820270923505;
     //</editor-fold>
 
@@ -129,47 +130,11 @@ public class AppTest {
       new Point(8,-2),
       new Point(-3,6),
       new Point(4,8),
-      new Point(-2,-9), //
-      new Point(2,2), //
-      new Point(8,8), //
-      new Point(-4,7), //
-      new Point(-5,8), //
-      // LIC 13
-      new Point(0, 0), // FIRST
-      new Point(0, 0), // A_PTS
-      new Point(0, 0), // A_PTS
-      new Point(0, 0), // A_PTS
-      new Point(0, 0), // A_PTS
-      new Point(0, 0), // A_PTS
-      new Point(0, 0), // A_PTS
-      new Point(0, 0), // A_PTS
-      new Point(1.5, 0), // SECOND
-      new Point(0, 0), // B_PTS
-      new Point(-1.5, 0), // THIRD
-      // LIC14
-    /**
-     * Triangle A: b*h / 2 = 5*4 / 2 = 10
-     * Triangle B: b*h / 2 = 2*2 / 2 = 2
-     */
-      new Point(-2.5, 0), // FirstA
-      new Point(-1, 0), // E_PTS, FirstB
-      new Point(0, 0), // E_PTS
-      new Point(0, 0), // E_PTS
-      new Point(0, 0), // E_PTS
-      new Point(0, 0), // E_PTS
-      new Point(0, 0), // E_PTS
-      new Point(0, 0), // E_PTS
-      new Point(0, 0), // E_PTS
-      new Point(2.5, 0), // SecondA, E_PTSB
-      new Point(1, 0), // F_PTS, FirstB
-      new Point(0, 0), // F_PTS
-      new Point(0, 0), // F_PTS
-      new Point(0, 0), // F_PTS
-      new Point(0, 0), // F_PTS
-      new Point(0, 0), // F_PTS
-      new Point(0, 0), // F_PTS
-      new Point(0, 4), // ThirdA, F_PTSB
-      new Point(0, 2), // Padding, ThirdB
+      new Point(-2,-9),
+      new Point(2,2),
+      new Point(8,8),
+      new Point(-4,7),
+      new Point(-5,8),
     };
     //</editor-fold>
 
@@ -282,6 +247,45 @@ public class AppTest {
     assertTrue(d.cmv[6]);
 
     /*
+     * LIC7:
+     * There exists at least one set of two data points separated by exactly
+     * K_PTS consecutive intervening points that are a distance greater than
+     * the length, LENGTH1, apart. The condition is not met when NUMPOINTS < 3.
+     */
+    /*
+     * K_PTS = 4
+     * LENGTH1 ≈ 7.73
+     * Distance between (-8,-9) and (8,5) ≈ 21.3 (according to https://www.geogebra.org/calculator)
+     * => LIC7 should be true
+     */
+    assertTrue(d.cmv[7]);
+
+    /*
+     * LIC8:
+     * There exists at least one set of three data points separated by exactly
+     * A_PTS and B_PTS consecutive intervening points, respectively, that cannot
+     * be contained within or on a circle of radius RADIUS1.
+     * The condition is not met when NUMPOINTS < 5.
+     */
+    /*
+     * A_PTS = 7
+     * B_PTS = 1
+     * RADIUS1 ≈ 1.42
+     *
+     * Points:
+     * (-6,0), <-- first point
+     * ... 7 intervening points ...
+     * (-10,3), <-- second point
+     * ... 1 intervening point ...
+     * (10,2) <-- third point
+     * Distance between first and third point ≈ 20.02 (according to https://www.geogebra.org/calculator)
+     * Hence they cannot fit within circle of RADIUS1.
+     *
+     * => LIC8 should be true
+     */
+    assertTrue(d.cmv[8]);
+
+    /*
      * LIC9:
      * There exists at least one set of three data points separated by exactly C_PTS and D_PTS
      * consecutive intervening points, respectively, that form an angle such that:
@@ -359,43 +363,126 @@ public class AppTest {
      */
     assertTrue(d.cmv[12]);
 
-    /**
+    /*
      * LIC13:
-     * There exists at least one set of three data points, separated by exactly A PTS and B PTS
+     * There exists at least one set of three data points, separated by exactly A_PTS and B_PTS
      * consecutive intervening points, respectively, that cannot be contained within or on a circle of
      * radius RADIUS1.
      * AND
      * There exists at least one set of three data points (which can be
-     * the same or different from the three data points just mentioned) separated by exactly A PTS
-     * and B PTS consecutive intervening points, respectively, that can be contained in or on a
+     * the same or different from the three data points just mentioned) separated by exactly A_PTS
+     * and B_PTS consecutive intervening points, respectively, that can be contained in or on a
      * circle of radius RADIUS2.
      */
-    /**
+    /*
      * RADIUS1 ≈ 1.42
      * RADIUS2 ≈ 1.83
      * A_PTS = 7
      * B_PTS = 1
+     *
+     * Points:
+     * (-6,0), <-- first point
+     * ... 7 intervening points ...
+     * (-10,3), <-- second point
+     * ... 1 intervening point ...
+     * (10,2) <-- third point
+     * Distance between first and third point ≈ 20.02 (according to https://www.geogebra.org/calculator)
+     * Hence they cannot fit within circle of RADIUS1.
+     *
+     * However, there are no three such points possibly contained within a circle of RADIUS2.
+     * => LIC13 should be FALSE.
      */
-    // assertTrue(d.cmv[13]);
+    assertFalse(d.cmv[13]);
 
-
-    /**
+    /*
      * LIC14:
-     * There exists at least one set of three data points, separated by exactly E PTS and F PTS
+     * There exists at least one set of three data points, separated by exactly E_PTS and F_PTS
      * consecutive intervening points, respectively, that are the vertices of a triangle with area greater
      * than AREA1.
      * AND
      * There exist three data points (which can be the same or different from the three data points just mentioned)
-     * separated by exactly E PTS and F PTS consecutive intervening points, respectively, that are the vertices of
+     * separated by exactly E_PTS and F_PTS consecutive intervening points, respectively, that are the vertices of
      * a triangle with area less than AREA2.
      */
-    /**
+    /*
      * AREA1 ≈ 8.13
      * AREA2 ≈ 5.6
      * E_PTS = 8
      * F_PTS = 7
+     *
+     * Points:
+     * (-6,0), <-- first point
+     * ... 8 intervening points ...
+     * (9,-8), <-- second point
+     * ... 7 intervening points ...
+     * (8,8) <-- third point
+     * yield area = 116 according to https://www.geogebra.org/calculator
+     * Which is > AREA1
+     *
+     * Points:
+     * (-5,3), <-- first point
+     * ... 8 intervening points ...
+     * (-4,-10), <-- second point
+     * ... 7 intervening points ...
+     * (-5,8) <-- third point
+     * yield area = 2.5 according to https://www.geogebra.org/calculator
+     * Which is < AREA2
+     *
+     * => LIC14 should be TRUE
      */
     assertTrue(d.cmv[14]);
 
+    // Testing values of the PUM
+    boolean[][] pum = d.pum;
+    boolean pumIsCorrect = true;
+
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        boolean pumEntryShouldBe = false; // Have to initialize to use later
+        LCM op = lcm[i][j];
+
+        //System.out.print(pum[i][j] + " "); // Used to print PUM a few lines down
+
+        switch(op) {
+          case ANDD -> pumEntryShouldBe = d.cmv[i] && d.cmv[j];
+          case ORR -> pumEntryShouldBe = d.cmv[i] || d.cmv[j];
+          case NOTUSED -> pumEntryShouldBe = true;
+        }
+        if (pum[i][j] != pumEntryShouldBe) {
+          pumIsCorrect = false;
+        }
+      }
+      //System.out.println(); // Used to print PUM a few lines down
+    }
+
+    assertTrue(pumIsCorrect);
+
+    /*
+      PUM for this particular run:
+      true true true true true true true true true true true true true true true,     0: true
+      true true true true true true true true true true true true true true true,     1: true
+      true true true true true true true true true true true true true true true,     2: true
+      true true true true true true true true true true true true true false true,    3: false
+      true true true true true true true true true true true true true true true,     4: true
+      true true true true true true true true true true true true true true true,     5: true
+      true true true true true true true true true true true true true true true,     6: true
+      true true true true true true true true true true true true true true true,     7: true
+      true true true true true true true true true true true true true false true,    8: false
+      true true true true true true true true true true true true true true true,     9: true
+      true true true true true true true true true true true true true true true,     10: true
+      true true true true true true true true true true true true true true true,     11: true
+      true true true true true true true true true true true true true true true,     12: true
+      true true true false true true true true false true true true true false false, 13: false
+      true true true true true true true true true true true true true false true,    14: false
+    */
+
+    // Testing values of the FUV
+    // Reminder: puv =   {false, false, true,  false, false, false, true, true, true,  true, true, false, false, false, true}
+    // => FUV should be: {true,  true,  true,  true,  true,  true,  true, true, false, true, true, true,  true,  true,  false}
+    boolean[] fuvShouldBe = {true, true, true, true, true, true, true, true, false, true, true, true, true, true, false};
+    assertArrayEquals(fuvShouldBe, d.fuv);
+
+    // Testing final output of DECIDE
+    assertEquals(d.Launch(), false);
   }
 }
