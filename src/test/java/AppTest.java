@@ -85,7 +85,7 @@ public class AppTest {
     params.F_PTS = 7;
     params.G_PTS = 4;
     params.LENGTH2 = 8.073005754021686;
-    params.RADIUS2 = 1.8299267470369274;
+    params.RADIUS2 = 10.34243932342224;
     params.AREA2 = 5.6006820270923505;
     //</editor-fold>
 
@@ -134,6 +134,42 @@ public class AppTest {
       new Point(8,8), //
       new Point(-4,7), //
       new Point(-5,8), //
+      // LIC 13
+      new Point(0, 0), // FIRST
+      new Point(0, 0), // A_PTS
+      new Point(0, 0), // A_PTS
+      new Point(0, 0), // A_PTS
+      new Point(0, 0), // A_PTS
+      new Point(0, 0), // A_PTS
+      new Point(0, 0), // A_PTS
+      new Point(0, 0), // A_PTS
+      new Point(1.5, 0), // SECOND
+      new Point(0, 0), // B_PTS
+      new Point(-1.5, 0), // THIRD
+      // LIC14
+    /**
+     * Triangle A: b*h / 2 = 5*4 / 2 = 10
+     * Triangle B: b*h / 2 = 2*2 / 2 = 2
+     */
+      new Point(-2.5, 0), // FirstA
+      new Point(-1, 0), // E_PTS, FirstB
+      new Point(0, 0), // E_PTS
+      new Point(0, 0), // E_PTS
+      new Point(0, 0), // E_PTS
+      new Point(0, 0), // E_PTS
+      new Point(0, 0), // E_PTS
+      new Point(0, 0), // E_PTS
+      new Point(0, 0), // E_PTS
+      new Point(2.5, 0), // SecondA, E_PTSB
+      new Point(1, 0), // F_PTS, FirstB
+      new Point(0, 0), // F_PTS
+      new Point(0, 0), // F_PTS
+      new Point(0, 0), // F_PTS
+      new Point(0, 0), // F_PTS
+      new Point(0, 0), // F_PTS
+      new Point(0, 0), // F_PTS
+      new Point(0, 4), // ThirdA, F_PTSB
+      new Point(0, 2), // Padding, ThirdB
     };
     //</editor-fold>
 
@@ -323,6 +359,43 @@ public class AppTest {
      */
     assertTrue(d.cmv[12]);
 
-    // ... more LICs
+    /**
+     * LIC13:
+     * There exists at least one set of three data points, separated by exactly A PTS and B PTS
+     * consecutive intervening points, respectively, that cannot be contained within or on a circle of
+     * radius RADIUS1.
+     * AND
+     * There exists at least one set of three data points (which can be
+     * the same or different from the three data points just mentioned) separated by exactly A PTS
+     * and B PTS consecutive intervening points, respectively, that can be contained in or on a
+     * circle of radius RADIUS2.
+     */
+    /**
+     * RADIUS1 ≈ 1.42
+     * RADIUS2 ≈ 1.83
+     * A_PTS = 7
+     * B_PTS = 1
+     */
+    // assertTrue(d.cmv[13]);
+
+
+    /**
+     * LIC14:
+     * There exists at least one set of three data points, separated by exactly E PTS and F PTS
+     * consecutive intervening points, respectively, that are the vertices of a triangle with area greater
+     * than AREA1.
+     * AND
+     * There exist three data points (which can be the same or different from the three data points just mentioned)
+     * separated by exactly E PTS and F PTS consecutive intervening points, respectively, that are the vertices of
+     * a triangle with area less than AREA2.
+     */
+    /**
+     * AREA1 ≈ 8.13
+     * AREA2 ≈ 5.6
+     * E_PTS = 8
+     * F_PTS = 7
+     */
+    assertTrue(d.cmv[14]);
+
   }
 }
